@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
 import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
@@ -8,6 +8,8 @@ function Profile() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.checkProfileReducer.profileId);
   const postList = useSelector((state) => state.checkProfileReducer.postList);
+  const [firstName, setFirstName] = useState(localStorage.getItem("UserFirstName"))
+  const [lastName, setLastName] = useState(localStorage.getItem("UserLastName"))
   const userInfo = useSelector(
     (state) => state.checkProfileReducer.profileInfo
   );
@@ -29,8 +31,8 @@ function Profile() {
               key={postItem.id}
               postId={postItem.id}
               userId={postItem.userId}
-              firstName={userInfo.firstName}
-              lastName={userInfo.lastName}
+              firstName={firstName}
+              lastName={lastName}
               content={postItem.content}
               image={postItem.image}
               likeList={postItem.like}
