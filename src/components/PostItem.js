@@ -34,6 +34,19 @@ function PostItem(props) {
       dispatch(addLike({ postId: postId, userId: currentUserId }));
     }
   }
+  const styles = ({
+    circleImageLayout: {
+      width: 50,
+      height: 50,
+      borderRadius: 50/2
+    },
+    circle: {
+      width: 30,
+      height: 30,
+      borderRadius: 30/2
+    }
+  });
+ 
 
   function handleShareClick(e) {
     dispatch(addShare({ postId: postId, userId: currentUserId }));
@@ -78,7 +91,7 @@ function PostItem(props) {
       <Row>
         <div className="d-flex align-items-center mb-3">
           <div className="mx-3">
-            {/* <Hashicon value={props.userId} size={50} /> */}
+            <img src={props.ava}  style = {styles.circleImageLayout}></img>
           </div>
           <div className="d-flex flex-column">
           <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
@@ -175,7 +188,7 @@ function PostItem(props) {
               <div className="border rounded border-info my-3 px-2 pb-2">
                 <div className="d-flex align-items-center my-2">
                   <div className="me-auto mx-1">
-                    <Hashicon value={commentItem.userId} size={30} />{" "}
+                  <img src={props.ava}  style = {styles.circle}></img>
                   </div>
                   <div className="w-100 mx-1 fw-bold">
                     <span>{commentItem.userFullname}</span>

@@ -38,6 +38,7 @@ function AllAccounts() {
               id={followerAccount.id}
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
+              ava = {followerAccount.avata}
             />
           );
         })

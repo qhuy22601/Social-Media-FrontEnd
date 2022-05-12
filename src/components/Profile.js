@@ -10,9 +10,7 @@ function Profile() {
   const postList = useSelector((state) => state.checkProfileReducer.postList);
   const [firstName, setFirstName] = useState(localStorage.getItem("UserFirstName"))
   const [lastName, setLastName] = useState(localStorage.getItem("UserLastName"))
-  const userInfo = useSelector(
-    (state) => state.checkProfileReducer.profileInfo
-  );
+  const userInfo = useSelector((state) => state.checkProfileReducer.profileInfo);
 
   useEffect(() => {
     if (userId !== null) {
@@ -34,6 +32,7 @@ function Profile() {
               firstName={firstName}
               lastName={lastName}
               content={postItem.content}
+              ava = {userInfo.avata}
               image={postItem.image}
               likeList={postItem.like}
               shareList={postItem.share}

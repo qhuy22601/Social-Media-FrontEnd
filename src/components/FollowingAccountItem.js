@@ -59,7 +59,7 @@ function FollowingAccountItem(props) {
   return (
     <div className="d-flex align-items-center my-5">
       <div>
-        {/* <Hashicon value={props.id} size={50} /> */}
+
         <img src={props.ava}  style = {styles.circleImageLayout}></img>
       </div>
       <div className="mx-3 fw-bold">

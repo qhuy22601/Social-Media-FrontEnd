@@ -47,6 +47,7 @@ function NewsFeedContent() {
               lastName={post.user.lastName}
               content={post.post.content}
               image={post.post.image}
+              ava = {post.user.avata}
               likeList={post.post.like}
               shareList={post.post.share}
               commentList={post.post.comment}

@@ -74,7 +74,6 @@ function FollowerAccountItem(props) {
     <div className="d-flex align-items-center my-5">
       <div>
       <img src ={props.ava} style = {styles.circleImageLayout}/>
-      {/* <Hashicon value={props.id} size={50}/> */}
       </div>
       <div className="mx-3 fw-bold">
         <Link
