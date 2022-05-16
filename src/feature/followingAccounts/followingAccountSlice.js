@@ -6,22 +6,7 @@ const initialState = {
   followerAccounts: null,
 };
 
-export const getAvata = createAsyncThunk(
-  "/api/auth/users/getava",
-  async ({avaID},thunkAPI) => {
-    const response = await axios({
-      method: "post",
-      url:"/api/auth/users/getava",
-      headers: {
-        Authorization: localStorage.getItem("Token"),
-      },
-      data:{
-        ava: avaID,
-      },
-    });
-    return response.data.payload;
-  }
-)
+
 
 export const getFollowingAccounts = createAsyncThunk(
   "/api/auth/users/getfollowing",
@@ -118,9 +103,6 @@ export const followingAccountSlice = createSlice({
     });
     builder.addCase(getFollowerAccounts.fulfilled, (state, action) => {
       state.followerAccounts = action.payload;
-    });
-    builder.addCase(getAvata.fulfilled, (state, action) => {
-      state.followingAccounts = action.payload;
     });
     builder.addCase(unfollowAccount.fulfilled, (state, action) => {
       state.followingAccounts = state.followingAccounts.filter((item) => item.id !== action.payload.id);

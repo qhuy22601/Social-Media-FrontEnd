@@ -4,7 +4,7 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileId } from "../feature/checkProfile/checkProfileSlice";
-import { unfollowAccount, getAvata } from "../feature/followingAccounts/followingAccountSlice";
+import { unfollowAccount } from "../feature/followingAccounts/followingAccountSlice";
 
 
 import { Button } from "react-bootstrap";
@@ -52,9 +52,7 @@ function FollowingAccountItem(props) {
   function handleClick(e) {
     dispatch(getProfileId(props.id));
   }
-  useEffect(() => {
-    dispatch(getAvata(props.ava));
-  }, []);
+
 
   return (
     <div className="d-flex align-items-center my-5">

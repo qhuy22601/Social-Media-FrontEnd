@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllAccounts, getAvata } from "../feature/followingAccounts/followingAccountSlice";
+import { getAllAccounts } from "../feature/followingAccounts/followingAccountSlice";
 import FollowerAccountItem from "./FollowerAccountItem";
 
 function AllAccounts() {

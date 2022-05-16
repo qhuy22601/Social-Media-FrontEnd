@@ -4,7 +4,7 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileId } from "../feature/checkProfile/checkProfileSlice";
-import { followAccount, getAvata } from "../feature/followingAccounts/followingAccountSlice";
+import { followAccount } from "../feature/followingAccounts/followingAccountSlice";
 
 import { Button } from "react-bootstrap";
 import { RiCheckFill, RiUserFollowFill } from "react-icons/ri";
@@ -44,10 +44,7 @@ function FollowerAccountItem(props) {
   })
   reader.readAsDataURL(file);
   }
-  useEffect(() => {
-    dispatch(getAvata(props.ava));
 
-  }, [])
   const styles = ({
     circleImageLayout: {
       width: 50,

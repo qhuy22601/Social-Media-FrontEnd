@@ -184,7 +184,6 @@ function PostCompose() {
             <Form.Label>
               <div className="d-flex align-items-center mb-1">
                 <div className="mx-3">
-                  {/* <Hashicon value={userId} size={60} /> */}
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
                 <div className="fs-4 fw-bold">{userFullname}</div>
