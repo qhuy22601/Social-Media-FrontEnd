@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
 import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
 import PostItem from "./PostItem";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -11,7 +14,25 @@ function Profile() {
   const [firstName, setFirstName] = useState(localStorage.getItem("UserFirstName"))
   const [lastName, setLastName] = useState(localStorage.getItem("UserLastName"))
   const userInfo = useSelector((state) => state.checkProfileReducer.profileInfo);
-  const [ava, setAva] = useState(localStorage.getItem("UserAvata"));
+  // const [ava, setAva] = useState(localStorage.getItem("UserAvata"));
+
+  const getProfileInfo = createAsyncThunk(
+    "/api/auth/users/profile",
+    async (userId, thunkAPI) => {
+      const response = await axios({
+        method: "post",
+        url: "/api/auth/users/profile",
+        headers: {
+          Authorization: localStorage.getItem("Token"),
+        },
+        data: {
+          id: userId,
+        },
+      });
+      return response.data.payload;
+    }
+  );
+  
   useEffect(() => {
     if (userId !== null) {
       dispatch(getProfilePosts(userId));
@@ -29,10 +50,10 @@ function Profile() {
               key={postItem.id}
               postId={postItem.id}
               userId={postItem.userId}
-              firstName={firstName}
-              lastName={lastName}
+              firstName={userInfo.firstName}
+              lastName={userInfo.lastName}
               content={postItem.content}
-              ava = {ava}
+              ava = {userInfo.avata}
               image={postItem.image}
               likeList={postItem.like}
               shareList={postItem.share}
