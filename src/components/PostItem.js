@@ -44,6 +44,9 @@ function PostItem(props) {
       width: 30,
       height: 30,
       borderRadius: 30/2
+    },
+    color:{
+      backgroundColor:'#282828'
     }
   });
  
@@ -87,7 +90,7 @@ function PostItem(props) {
   }
 
   return (
-    <div className="border shadow rounded-3 border-primary p-3 mt-3">
+    <div className="border shadow rounded-3 p-3 mt-3" style={styles.color}>
       <Row>
         <div className="d-flex align-items-center mb-3">
           <div className="mx-3">

@@ -18,7 +18,7 @@ function FollowerAccountItem(props) {
     (state) => state.followingAccountReducer.followingAccounts
   );
 
-  const [followButtonTitle, setFollowButtonTitle] = useState("Follow");
+  const [followButtonTitle, setFollowButtonTitle] = useState("Theo dõi");
   const [tickIconStatus, setTickIconStatus] = useState(false);
 
   function handleFollowButtonClick(e) {
@@ -28,7 +28,7 @@ function FollowerAccountItem(props) {
         followerId: localStorage.getItem("UserId"),
       })
     );
-    setFollowButtonTitle("Followed");
+    setFollowButtonTitle("Theo dõi");
     setTickIconStatus(true);
   }
 
@@ -50,6 +50,13 @@ function FollowerAccountItem(props) {
       width: 50,
       height: 50,
       borderRadius: 50   / 2
+    },
+    name:{
+      color: 'white'
+    },
+    btnn:{
+      color:"#7eb4e9",
+      border:'1px solid #7eb4e9'
     }
   });
 
@@ -58,7 +65,7 @@ function FollowerAccountItem(props) {
       for (let i = 0; i < storeFollowingAccounts.length; i++) {
         if (storeFollowingAccounts[i].id === props.id) {
           setTickIconStatus(true);
-          setFollowButtonTitle("Followed");
+          setFollowButtonTitle("Theo dõi");
         }
       }
     }
@@ -78,11 +85,11 @@ function FollowerAccountItem(props) {
           className="text-decoration-none text-dark"
           onClick={handleClick}
         >
-          {props.firstName + " " + props.lastName}
+          <h5 className="name" style={styles.name}>{props.firstName + " " + props.lastName} </h5>
         </Link>
       </div>
       <div>
-        <Button
+        <Button style={styles.btnn}
           variant={tickIconStatus ? "primary" : "thanh cong"}
           onClick={handleFollowButtonClick}
           disabled={tickIconStatus}

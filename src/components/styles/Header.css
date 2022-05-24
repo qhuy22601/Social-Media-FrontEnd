@@ -1,9 +1,9 @@
 .header {
-  padding: 8px 15px;
+  padding: 8px 0px;
   display: flex;
   justify-content: space-between;
   position: sticky;
-  background-color: white;
+  border-bottom: 1px solid rgb(98, 213, 233);
   z-index: 100;
   top: 0;
   box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
@@ -22,10 +22,11 @@
 .header_input {
   display: flex;
   align-items: center;
-  background-color: aliceblue;
+  background-color: rgb(143, 181, 214);
   padding: 10px;
-  margin-left: 10px;
+  margin-left: 0px;
   border-radius: 999px;
+  width:280px
 }
 
 .header_input > input {
@@ -43,7 +44,7 @@
 .header_option {
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 25px;
   cursor: pointer;
 }
 
@@ -91,6 +92,7 @@
   color: black;
   border-radius: 55px;
   background-color: #eff2f5;
+  margin-left: 10px;
 }
 
 

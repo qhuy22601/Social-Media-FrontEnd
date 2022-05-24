@@ -16,7 +16,7 @@ function FollowingAccountItem(props) {
     (state) => state.checkProfileReducer.profileId
   );
 
-  const [followButtonTitle, setFollowButtonTitle] = useState("Unfollow");
+  const [followButtonTitle, setFollowButtonTitle] = useState("Hủy theo dõi");
   const [tickIconStatus, setTickIconStatus] = useState(false);
   const [url, setUrl] =useState('');
   const uploader = (file) =>{
@@ -34,6 +34,13 @@ function FollowingAccountItem(props) {
       width: 50,
       height: 50,
       borderRadius: 50   / 2
+    },
+    name :{
+      color: 'white',
+    },
+    btnn:{
+      color:"#7eb4e9",
+      border:'1px solid #7eb4e9'
     }
   });
 
@@ -45,7 +52,7 @@ function FollowingAccountItem(props) {
         followerId: localStorage.getItem("UserId"),
       })
     );
-    setFollowButtonTitle("Unfollowed");
+    setFollowButtonTitle("Hủy theo dõi");
     setTickIconStatus(true);
   }
 
@@ -60,17 +67,18 @@ function FollowingAccountItem(props) {
 
         <img src={props.ava}  style = {styles.circleImageLayout}></img>
       </div>
-      <div className="mx-3 fw-bold">
+      <div className="mx-3 fw-bold"  >
         <Link
           to="/newsfeed/profile"
           className="text-decoration-none text-dark"
           onClick={handleClick}
         >
-          {props.firstName + " " + props.lastName}
+          <h5 className="name" style={styles.name}>{props.firstName + " " + props.lastName} </h5>
+          
         </Link>
       </div>
       <div>
-        <Button
+        <Button style={styles.btnn}
           variant={tickIconStatus ? "danger" : "thanh cong"}
           onClick={handleFollowButtonClick}
         >

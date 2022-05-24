@@ -46,6 +46,9 @@ function PostCompose() {
       width: 50,
       height: 50,
       borderRadius: 50   / 2
+    },
+    compose:{
+      backgroundColor:'#282828'
     }
   });
   
@@ -177,7 +180,7 @@ function PostCompose() {
 
   return (
     <div>
-      <div className="border rounded-3 border-success p-3 shadow">
+      <div className="border rounded-3 p-3 shadow" style={styles.compose}>
         <ToastContainer />
         <Form className="d-flex flex-column">
           <Form.Group className="mb-3">
@@ -210,7 +213,7 @@ function PostCompose() {
             </Form.Label>
           </Form.Group>
           <div className="d-flex justify-content-end align-items-center">
-            <span>Giới hạn: {postContentCount}/200</span>
+            
             <Button
               onClick={handleCreatePost}
               variant="success"

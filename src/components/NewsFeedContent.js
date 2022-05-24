@@ -34,7 +34,6 @@ function NewsFeedContent() {
 
   return (
     <div>
-      {/* <h1>NewsFeedContent page</h1> */}
       <PostCompose />
       {storeFollowingPosts !== null ? (
         storeFollowingPosts.map((post) => {

@@ -32,10 +32,23 @@ function NewsFeed() {
       width: 50,
       height: 50,
       borderRadius: 50   / 2
+    },
+    container:{
+      width:600,
+      color: 'white'
+    },
+    bn:{
+      color: '#0d6efd'
+    },
+    name:{
+      color: 'white'
+    },
+    cancle:{
+      marginRight:70,
     }
   });
 
-  const [userName, setUserName] = useState(localStorage.getItem("UserFirstName")+"" + localStorage.getItem("UserLastName"));
+  const [userName, setUserName] = useState(localStorage.getItem("UserFirstName")+" " + localStorage.getItem("UserLastName"));
   const [search, setSearch]= useState('')
   const [url, setUrl] =useState('');
   const uploader = (file) =>{
@@ -82,10 +95,10 @@ function NewsFeed() {
 
   }
 
-
+  document.body.style.backgroundColor = "#1c1e21";
   return (
     
-    <Container className="pt-3">
+    <Container>
 
         <div className="header">
 
@@ -96,7 +109,7 @@ function NewsFeed() {
              value={search}
              onChange={handleChange}
              />
-             <CancelOutlinedIcon onClick={cancel}/>
+             <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
           </div>
         </div>
 
@@ -111,10 +124,11 @@ function NewsFeed() {
           <Link to="follower"><PeopleAltOutlinedIcon fontSize="large" /></Link>
           </div>
           <div className="header_option" onClick={handleClick} color="primary">
-            <ExploreOutlinedIcon fontSize="large" />
+            <ExploreOutlinedIcon style={styles.bn} fontSize="large" />
           </div>
           <div className="header_option">
-            <Link to="game"><WidgetsOutlinedIcon  fontSize="large" /></Link>
+            <Link to="game">
+              <WidgetsOutlinedIcon  fontSize="large" /></Link>
           </div>
         </div>
 
@@ -122,7 +136,7 @@ function NewsFeed() {
           <div className="header_info">
             <Link to="myprofile"> <img src ={url} style = {styles.circleImageLayout}/></Link>
            
-            <h4>{userName}</h4>
+            <h4 className="name" style={styles.name}>{userName} </h4>
           </div>
 
           <div className='iconButton'>
@@ -147,11 +161,11 @@ function NewsFeed() {
           </div>
         </div>
         </div>
-     
+        <Container className="pt-3" style={styles.container}>
         <Col md={13}>
           <Outlet />{" "}
         </Col>
-    
+        </Container>
     </Container>
   );
 }

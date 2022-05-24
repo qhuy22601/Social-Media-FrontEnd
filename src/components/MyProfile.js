@@ -75,6 +75,7 @@ function MyProfile() {
               lastName={lastName}
               content={postItem.content}
               image={postItem.image}
+              ava = {url}
               likeList={postItem.like}
               shareList={postItem.share}
               commentList={postItem.comment}
