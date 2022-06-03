@@ -95,6 +95,10 @@ function NewsFeed() {
 
   }
 
+  // function login() {
+  //   this.socket.emit('login', localStorage.getItem("UserFirstName")+" " + localStorage.getItem("UserLastName"))
+  // }
+
   document.body.style.backgroundColor = "#1c1e21";
   return (
     
@@ -146,7 +150,7 @@ function NewsFeed() {
           </div>
           <div className='iconButton'>
             <IconButton>
-              <ForumIcon />
+              <Link to="chat"><ForumIcon/></Link>
             </IconButton>
           </div>
             {/* <div className='iconButton'>

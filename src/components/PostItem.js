@@ -9,8 +9,9 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 
 import styles from "./styles/PostItem.module.css";
 import { useDispatch } from "react-redux";
-import {addLike, addShare, addComment,getFollowingPosts,} from "../feature/followingPost/followingPostSlice";
-
+import {addLike, addShare, addComment,getFollowingPosts,del} from "../feature/followingPost/followingPostSlice";
+import ClearIcon from '@mui/icons-material/Clear';
+import { IconButton } from "@mui/material";
 function PostItem(props) {
   const dispatch = useDispatch();
 
@@ -49,10 +50,14 @@ function PostItem(props) {
       backgroundColor:'#282828'
     }
   });
- 
 
   function handleShareClick(e) {
     dispatch(addShare({ postId: postId, userId: currentUserId }));
+    dispatch(getFollowingPosts());
+  }
+
+  function handleDelClick(e){
+    dispatch(del({ postId: postId}));
     dispatch(getFollowingPosts());
   }
 
@@ -96,9 +101,15 @@ function PostItem(props) {
           <div className="mx-3">
             <img src={props.ava}  style = {styles.circleImageLayout}></img>
           </div>
+       
           <div className="d-flex flex-column">
           <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
           <div className="text-secondary">{timeAgo.format(new Date(props.postDate).getTime(), 'twitter')}</div>
+          </div>
+          <div class = "d-flex flex-row-reverse" color="primary" onClick={handleDelClick}>
+            <IconButton >
+            <ClearIcon />
+            </IconButton>
           </div>
         </div>
         <div className="mx-3">

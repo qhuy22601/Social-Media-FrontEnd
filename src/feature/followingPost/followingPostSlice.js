@@ -23,6 +23,20 @@ export const getFollowingPosts = createAsyncThunk(
   }
 );
 
+async function delPost(postId){
+  const response = await axios({
+    method:"delete",
+    url: "/api/posts/del/"+postId,
+    headers: {
+      Authorization: localStorage.getItem("Token"),
+    },
+    data: {
+      id: postId
+    },
+  });
+  return response.data.payload;
+};
+
 async function insertComment(postId, commentContent) {
   const response = await axios({
     method: "post",
@@ -95,6 +109,12 @@ export const followingPostSlice = createSlice({
         }
       },
 
+      del:(state, action)=>{
+        if (state.followingPosts != null) {
+          delPost(action.payload.postId)
+        }
+      },
+
       addShare: (state, action) => {
           if (state.followingPosts !== null) {
               for (let i = 0; i < state.followingPosts.length; i++) {
@@ -124,5 +144,5 @@ export const followingPostSlice = createSlice({
   },
 });
 
-export const {addLike, addShare, addComment} = followingPostSlice.actions;
+export const {addLike, addShare, addComment, del} = followingPostSlice.actions;
 export default followingPostSlice.reducer;

@@ -17,7 +17,7 @@ import {EmailConfirm} from "./EmailConfirm";
 import ResetPassword from "./ResetPassword";
 import Game from "./game/Game";
 import EditForm from "./EditForm";
-
+import Chat from "./Chat";
 function AppContainer() {
   return (
     <HashRouter>
@@ -36,7 +36,7 @@ function AppContainer() {
           <Route path="editform" element={<EditForm/>}/>
           <Route path="allaccounts" element={<AllAccounts />} />
           <Route path="game" element={<Game />} />
-          
+          <Route path="chat" element={<Chat />}/>
         </Route>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />        

@@ -88,6 +88,8 @@ function PostCompose() {
     }
   }
 
+ 
+
   async function createPost(inputContent) {
     try {
       const response = await axios({

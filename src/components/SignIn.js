@@ -114,7 +114,7 @@ function SignIn() {
                 value={values.email}
                 onChange={handleChange}
                 isInvalid={touched.email && errors.email}
-                placeholder='Enter username' required />
+                placeholder='Enter email' required />
                  <Form.Control.Feedback type="invalid">
                  Nhập email
                 </Form.Control.Feedback>
