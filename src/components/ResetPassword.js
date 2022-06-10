@@ -12,137 +12,84 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 
 function ResetPassword(){
-  
-  function showFailMessage(inputMessage) {
-    toast.error(inputMessage, {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  }
+
+
+  const[firstName, setFirstName] = useState('')
+  const[lastName, setLastName] = useState('')
+
 
   let navigate = useNavigate();
-  // const schemes= yup.object().shape({
-  //   password:yup.string().required(),
-  // });
 
-  //   async function changePassword(inpPass){
-  //     try{
-  //       const response = await axios({
-  //         method: 'post',
-  //         url: 'api/auth/users/changepass',
-  //         headers: {
-  //           Authorization: localStorage.getItem('Token'),
-  //         },
-  //         data:{
-  //             password:inpPass.password,
-  //         }
-  //       });
-  //       if (response.data !== null && response.data.status === "that bai") {
-  //           console.log("Loixo");
-  //       }
 
-  //       if( response.data !==null&&response.data.status === "thanh cong") {
-  //           response.data.payload = response.data.payload.users.password;
-  //           navigate("/profile");
-  //       }
+  function handleChange(e){
+    e.preventDefault();
+    setFirstName( e.target.value);
+    
+  }
+  function handle(e){
+    e.preventDefault();
+    setLastName( e.target.value);
+  }
 
-  //     }catch(e){
-  //       showFailMessage("Loioix!");
-  //     }
-  //   }
-  const [pass, setPass] = useState('')
 
-  async function changePass(inpPass){
-    try{
+  const [resData, setResData] = useState(null);
+
+  async function changeName(inputData){
+
       const res = await axios({
         method: "put",
-        url: "/api/auth/users/update",
+        url: "/api/auth/users/changepass",
         header:{
           Authorization:localStorage.getItem('Token'),
         },
         data:{
-          pass:inpPass,
+          firstName : inputData.firstName,
+          lastName: inputData.lastName,
         },
       });
-      if(res.data.status ==="thanh cong" && res.data!== null){
-        showFailMessage("Thành công!");
-        navigate("/newfeed");
-      }
       if (res.data !== null && res.data.status === "that bai") {
-        showFailMessage("Lỗi rồi!");
+        console.log("Lỗi rồi!");
       }
-    }catch(e){
-      showFailMessage("lỗi rồi");
-    }
+      if(res.data.status ==="thanh cong" && res.data!== null){
+        setResData(res.data);
+        localStorage.removeItem("UserFirstName");
+        localStorage.removeItem("UserLastName");
+        localStorage.setItem("UserLastName", res.data.payload.user.lastName);
+        localStorage.setItem("UserFirstName", res.data.payload.user.firstName);
+        // navigate("/newfeed");
+      }
+      
+   
   }
+  return (
+  <div>
+    <form >
+      <input 
+       
+          type="text"
+          name="firstName"
+          value={firstName}
+          onChange={handleChange}
+          placeholder='Enter firstName'
+       />
+       <input
+        
+          type="text"
+          name="lastName"
+          value={lastName}
+          onChange={handle}
+          placeholder='Enter lastName'
+          />
+      
+            <Button className='btnSubmit'  type='submit' color="primary" onClick={changeName} >change</Button>
 
-  async function handleChangePass(e) {
-    e.preventDefault();
-    changePass(pass);
-  }
-  
-  function handlePassChange(e) {
-    setPass(e.target.value);
-  }
-
-
-
-    return (
-        <Container fluid className={styles.container}>
-          <ToastContainer/>
-         {/* <Formik
-        validationSchema={schemes}
-        initialValues={{
-          password: "",
-        }}
-        onSubmit={(values, {setSubmitting}) => {
-          changePassword(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isInValid,
-          errors,
-        }) => ( */}
-            <Form noValidate className={styles.formContainer} >
-  
-              <Row className="mb-3">
-                <Form.Group as={Col} md="12" controlId="passinp">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={pass}
-                    onChange={handlePassChange}
-                 
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Nhập pass
-                  </Form.Control.Feedback>
-                </Form.Group>
-                </Row>
-              <Button type="submit" variant="primary" onClick={handleChangePass}>
-                Đổi
-              </Button>
-            </Form>
-        {/* )}
-        </Formik> */}
-      </Container>
-    )
+            </form>
+  </div>
+  );
 }
 export default ResetPassword;

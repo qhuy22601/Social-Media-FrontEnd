@@ -4,14 +4,17 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
+
 import { RiHeartFill, RiHeartLine, RiMessage2Fill, RiShareForwardFill, RiSendPlane2Fill,} from "react-icons/ri";
 import { Button, Col, Form, Row } from "react-bootstrap";
-
+import InputTrigger from 'react-input-trigger';
 import styles from "./styles/PostItem.module.css";
 import { useDispatch } from "react-redux";
 import {addLike, addShare, addComment,getFollowingPosts,del} from "../feature/followingPost/followingPostSlice";
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
+import { MentionsInput, Mention } from 'react-mentions'
+
 function PostItem(props) {
   const dispatch = useDispatch();
 
@@ -22,6 +25,9 @@ function PostItem(props) {
   const [currentUserId, setCurrentUserId] = useState(
     localStorage.getItem("UserId")
   );
+  const [showSuggestor, setShowSuggestor] = useState(false);
+  const [left, setLeft] = useState(null)
+  const [top, setTop] = useState(null)
   const [postId, setPostId] = useState(props.postId);
 
   TimeAgo.addLocale(en);
@@ -48,6 +54,9 @@ function PostItem(props) {
     },
     color:{
       backgroundColor:'#282828'
+    },
+    h:{
+      textTransform: 'capitalize'
     }
   });
 
@@ -70,13 +79,28 @@ function PostItem(props) {
 
     setCommentContent(e.target.value);
 
-    if (commentContent.length - 1 > 0 && commentContent.length - 1 <= 100) {
+    if (commentContent.length -1 >= 0 && commentContent.length - 1 <= 100) {
       setSendButtonDisable(false);
     } else {
       setSendButtonDisable(true);
     }
   }
 
+  function toggleSuggestor(metaInformation) {
+    const hookType = metaInformation;
+    const cursor = metaInformation;
+
+    if (hookType === 'start') {
+        setShowSuggestor(true);
+        setLeft(cursor.left);
+        setTop(cursor.top + cursor.height); // we need to add the cursor height so that the dropdown doesn't overlap with the `@`.
+    }
+    if (hookType === 'cancel') {
+      setShowSuggestor(false);
+      setLeft("");
+      setTop(""); // we need to add the cursor height so that the dropdown doesn't overlap with the `@`.
+  }
+  }
   function sendComment(e) {
     dispatch(
       addComment({
@@ -103,7 +127,7 @@ function PostItem(props) {
           </div>
        
           <div className="d-flex flex-column">
-          <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
+          <div className="fw-bold" style={styles.h}>{props.firstName + " " + props.lastName}</div>
           <div className="text-secondary">{timeAgo.format(new Date(props.postDate).getTime(), 'twitter')}</div>
           </div>
           <div class = "d-flex flex-row-reverse" color="primary" onClick={handleDelClick}>
@@ -175,15 +199,56 @@ function PostItem(props) {
         {/* Comment List */}
         {commentStatus === true ? (
           <div className="mt-3">
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center"  >
               <Form className="w-100 mx-1">
                 <Form.Group>
+                  
                   <Form.Control
                     type="text"
                     placeholder="Viết bình luận..."
                     value={commentContent}
                     onChange={handleCommentContentChange}
                   />
+                  {/* <InputTrigger
+                  trigger={{
+                    keyCode: 50,
+                    shiftKey: true,
+                  }}
+                  onStart={(metaData) => {toggleSuggestor(metaData);} }
+                  onCancel={(metaData) => { toggleSuggestor(metaData); }}
+                  >
+                  <textarea
+                  value={commentContent}
+                  onChange={handleCommentContentChange}
+                  placeholder="Viết bình luận..."
+                    style={{
+                      height: '50px',
+                      width: '450px',
+                      lineHeight: '1em',
+                    }}
+                  />
+                </InputTrigger>
+                <div
+                  id="dropdown"
+                  style={{
+                    position: "absolute",
+                    width: "200px",
+                    borderRadius: "6px",
+                    background: "blue",
+                    boxShadow: "rgba(0, 0, 0, 0.4) 0px 1px 4px",  
+                    display: showSuggestor ? "block" : "none",
+                    top: top,
+                    left: left,
+                  }}
+                >
+                </div> */}
+                  {/* <MentionsInput type = "text" value={commentContent} onChange={handleCommentContentChange} placeholder="Viết bình luận...">
+                    <Mention
+                    trigger="@"
+                    data=""
+                    />
+                  </MentionsInput> */}
+               
                 </Form.Group>
               </Form>
               <span className="mx-1">{commentContent.length}/100</span>

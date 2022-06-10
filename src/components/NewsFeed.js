@@ -37,11 +37,15 @@ function NewsFeed() {
       width:600,
       color: 'white'
     },
+    h:{
+      textTransform: 'capitalize'
+    },
     bn:{
       color: '#0d6efd'
     },
     name:{
-      color: 'white'
+      color: 'white',
+      textTransform: 'capitalize'
     },
     cancle:{
       marginRight:70,
@@ -99,7 +103,7 @@ function NewsFeed() {
   //   this.socket.emit('login', localStorage.getItem("UserFirstName")+" " + localStorage.getItem("UserLastName"))
   // }
 
-  document.body.style.backgroundColor = "#1c1e21";
+  // document.body.style.backgroundColor = "#1c1e21";
   return (
     
     <Container>
@@ -145,7 +149,7 @@ function NewsFeed() {
 
           <div className='iconButton'>
             <IconButton>
-              <Link to="editform"><AppsIcon/></Link>
+              <Link to="changename"><AppsIcon/></Link>
             </IconButton>
           </div>
           <div className='iconButton'>

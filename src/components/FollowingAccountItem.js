@@ -37,6 +37,7 @@ function FollowingAccountItem(props) {
     },
     name :{
       color: 'white',
+      textTransform: 'capitalize'
     },
     btnn:{
       color:"#7eb4e9",

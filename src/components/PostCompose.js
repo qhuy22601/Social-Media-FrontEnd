@@ -11,7 +11,7 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import { useDispatch, useSelector } from "react-redux";
 import {getFollowingPosts} from "../feature/followingPost/followingPostSlice";
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-
+import { Player, ControlBar } from 'video-react';
 import "./styles/FileBtn.css" 
 
 function PostCompose() {
@@ -31,6 +31,16 @@ function PostCompose() {
   const [file64String, setFile64String] = useState(null);
   const [file64StringWithType, setFile64StringWithType] = useState(null);
   const [url, setUrl] =useState('');
+  const [videoSrc , seVideoSrc] = useState("");
+
+
+  const handleChange = ({file}) => {
+    var reader = new FileReader();
+    console.log(file)
+    var url = URL.createObjectURL(file.originFileObj);
+    seVideoSrc(url);
+};
+
   const uploader = (file) =>{
   const reader = new FileReader();
   reader.addEventListener('load', ()=>{
@@ -49,6 +59,9 @@ function PostCompose() {
     },
     compose:{
       backgroundColor:'#282828'
+    },
+    h:{
+      textTransform: 'capitalize'
     }
   });
   
@@ -135,6 +148,8 @@ function PostCompose() {
     }
 
     compressImageFile(e);
+
+    handleChange(e);
   }
 
   function fileToBase64(file, cb) {
@@ -191,7 +206,7 @@ function PostCompose() {
                 <div className="mx-3">
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
-                <div className="fs-4 fw-bold">{userFullname}</div>
+                <div className="fs-4 fw-bold" style={styles.h}>{userFullname}</div>
               </div>
             </Form.Label>
             <Form.Control
@@ -208,8 +223,8 @@ function PostCompose() {
             
             <Form.Control className="inside"
               type="file"
-              accept=".jpg, .jpeg, .png"
-              onChange={onUploadFileChange}
+              accept=".jpg, .jpeg, .png, .mp4"
+              onChange={handleChange}
               
             /><CloudUploadOutlinedIcon />
             </Form.Label>
@@ -227,7 +242,16 @@ function PostCompose() {
           </div>
         </Form>
         {file64String !== null ? (
+          <div>
           <img src={file64StringWithType} alt="chosen" />
+          {/* <video src={file64StringWithType} alt="chosen"></video> */}
+          <Player
+          playsInline
+          src={videoSrc}
+          alt="chosen"
+          fluid={false}
+          ></Player>
+          </div>
         ) : (
           <span></span>
         )}

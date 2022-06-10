@@ -24,6 +24,8 @@ export const getProfilePosts = createAsyncThunk(
   }
 );
 
+
+
 export const getProfileInfo = createAsyncThunk(
   "/api/auth/users/profile",
   async (userId, thunkAPI) => {

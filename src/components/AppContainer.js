@@ -33,7 +33,7 @@ function AppContainer() {
           <Route path="follower" element={<FollowerList />} />
           <Route path="profile" element={<Profile />} />
           <Route path="myprofile" element={<MyProfile />}/>
-          <Route path="editform" element={<EditForm/>}/>
+          <Route path="changename" element={<ResetPassword />} />
           <Route path="allaccounts" element={<AllAccounts />} />
           <Route path="game" element={<Game />} />
           <Route path="chat" element={<Chat />}/>
