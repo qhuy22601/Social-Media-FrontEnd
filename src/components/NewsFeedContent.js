@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import PostCompose from "./PostCompose";
 import PostItem from "./PostItem";
 import { Spinner } from "react-bootstrap";
-import {getFollowingPosts} from "../feature/followingPost/followingPostSlice";
+import { getFollowingPosts } from "../feature/followingPost/followingPostSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function NewsFeedContent() {
   const dispatch = useDispatch();
-  const storeFollowingPosts = useSelector((state) => state.followingPostReducer.followingPosts);
+  const storeFollowingPosts = useSelector(
+    (state) => state.followingPostReducer.followingPosts
+  );
 
   // dung redux toolkit thunk
   //
@@ -46,7 +48,7 @@ function NewsFeedContent() {
               lastName={post.user.lastName}
               content={post.post.content}
               image={post.post.image}
-              ava = {post.user.avata}
+              ava={post.user.avata}
               likeList={post.post.like}
               shareList={post.post.share}
               commentList={post.post.comment}

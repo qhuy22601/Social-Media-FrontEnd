@@ -15,7 +15,7 @@ function FollowerList() {
     if (localStorage.getItem("Token") === null) {
       navigate("/unauthorized");
     }
-    
+
     dispatch(getFollowerAccounts());
   }, []);
 
@@ -30,7 +30,7 @@ function FollowerList() {
               id={followerAccount.id}
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
-              ava = {followerAccount.avata}
+              ava={followerAccount.avata}
             />
           );
         })

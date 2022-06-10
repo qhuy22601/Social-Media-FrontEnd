@@ -9,14 +9,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Hashicon } from "@emeraldpay/hashicon-react";
 import { useDispatch, useSelector } from "react-redux";
-import {getFollowingPosts} from "../feature/followingPost/followingPostSlice";
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import { Player, ControlBar } from 'video-react';
-import "./styles/FileBtn.css" 
+import { getFollowingPosts } from "../feature/followingPost/followingPostSlice";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+
+import "./styles/FileBtn.css";
+
 
 function PostCompose() {
   const dispatch = useDispatch();
-  const storeFollowingPosts = useSelector((state) => state.followingPostReducer.followingPosts);
+  const storeFollowingPosts = useSelector(
+    (state) => state.followingPostReducer.followingPosts
+  );
 
   const [userFullname, setUserFullname] = useState(
     localStorage.getItem("UserFirstName") +
@@ -30,41 +33,34 @@ function PostCompose() {
   const [file, setFile] = useState(null);
   const [file64String, setFile64String] = useState(null);
   const [file64StringWithType, setFile64StringWithType] = useState(null);
-  const [url, setUrl] =useState('');
-  const [videoSrc , seVideoSrc] = useState("");
+  const [url, setUrl] = useState("");
+  const uploader = (file) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      localStorage.setItem("UserAvata", reader.result);
+    });
+    reader.readAsDataURL(file);
+  };
 
-
-  const handleChange = ({file}) => {
-    var reader = new FileReader();
-    console.log(file)
-    var url = URL.createObjectURL(file.originFileObj);
-    seVideoSrc(url);
-};
-
-  const uploader = (file) =>{
-  const reader = new FileReader();
-  reader.addEventListener('load', ()=>{
-      localStorage.setItem('UserAvata',reader.result)
-  })
-  reader.readAsDataURL(file);
-  }
   useEffect(() => {
-    setUrl(localStorage.getItem('UserAvata'));
-  }, [])
-  const styles = ({
+    setUrl(localStorage.getItem("UserAvata"));
+  }, []);
+  const styles = {
     circleImageLayout: {
       width: 50,
       height: 50,
-      borderRadius: 50   / 2
+      borderRadius: 50 / 2,
     },
-    compose:{
-      backgroundColor:'#282828'
+
+    compose: {
+      backgroundColor: "#282828",
     },
-    h:{
+    name:{
+
       textTransform: 'capitalize'
     }
-  });
-  
+  };
+
   function showSuccessMessage(inputMessage) {
     toast.success(inputMessage, {
       position: "bottom-center",
@@ -100,8 +96,6 @@ function PostCompose() {
       setDisablePostButton(false);
     }
   }
-
- 
 
   async function createPost(inputContent) {
     try {
@@ -140,7 +134,6 @@ function PostCompose() {
     }
   }
 
-
   function onUploadFileChange(e) {
     setFile64String(null);
     if (e.target.files < 1 || !e.target.validity.valid) {
@@ -149,7 +142,7 @@ function PostCompose() {
 
     compressImageFile(e);
 
-    handleChange(e);
+    // handleChange(e);
   }
 
   function fileToBase64(file, cb) {
@@ -206,7 +199,9 @@ function PostCompose() {
                 <div className="mx-3">
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
-                <div className="fs-4 fw-bold" style={styles.h}>{userFullname}</div>
+
+                <div className="fs-4 fw-bold" style={styles.name}>{userFullname}</div>
+
               </div>
             </Form.Label>
             <Form.Control
@@ -219,18 +214,19 @@ function PostCompose() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label  className="file">
-            
-            <Form.Control className="inside"
-              type="file"
-              accept=".jpg, .jpeg, .png, .mp4"
-              onChange={handleChange}
-              
-            /><CloudUploadOutlinedIcon />
+
+            <Form.Label className="file">
+              <Form.Control
+                className="inside"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                onChange={onUploadFileChange}
+              />
+              <CloudUploadOutlinedIcon />
+
             </Form.Label>
           </Form.Group>
           <div className="d-flex justify-content-end align-items-center">
-            
             <Button
               onClick={handleCreatePost}
               variant="success"
@@ -245,12 +241,12 @@ function PostCompose() {
           <div>
           <img src={file64StringWithType} alt="chosen" />
           {/* <video src={file64StringWithType} alt="chosen"></video> */}
-          <Player
+          {/* <Player
           playsInline
           src={videoSrc}
           alt="chosen"
           fluid={false}
-          ></Player>
+          ></Player> */}
           </div>
         ) : (
           <span></span>

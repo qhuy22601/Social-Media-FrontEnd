@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,9 +11,8 @@ import {
   BsGithub,
   BsFillShareFill,
   BsFillPersonPlusFill,
-  BsFillCpuFill
+  BsFillCpuFill,
 } from "react-icons/bs";
-
 
 function HomePage() {
   const navigate = useNavigate();
@@ -25,10 +24,15 @@ function HomePage() {
   });
 
   return (
-    <Container>     
-               <Link to="/signin"> <Button variant="primary">Đăng nhập</Button></Link>   
-                <Link to="/signup"><Button variant="primary">Đăng kí</Button></Link>       
-     </Container>
+    <Container>
+      <Link to="/signin">
+        {" "}
+        <Button variant="primary">Đăng nhập</Button>
+      </Link>
+      <Link to="/signup">
+        <Button variant="primary">Đăng kí</Button>
+      </Link>
+    </Container>
   );
 }
 
