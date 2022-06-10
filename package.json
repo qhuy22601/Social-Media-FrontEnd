@@ -20,6 +20,8 @@
     "formik": "^2.2.9",
     "javascript-time-ago": "^2.3.10",
     "jquery": "^3.6.0",
+    "node-sass": "^7.0.1",
+    "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.4",
     "react-burger-menu": "^3.0.6",

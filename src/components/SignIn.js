@@ -1,23 +1,17 @@
-import React, { useState } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
-
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/esm/Container";
-
-import { RiLoginBoxLine } from "react-icons/ri";
-
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-
-import styles from "./styles/SignIn.module.css";
 import axios from "axios";
+import { Formik } from "formik";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/esm/Container";
+import Form from "react-bootstrap/Form";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate, Link } from "react-router-dom";
+import * as yup from "yup";
+import styles from "./styles/SignIn.module.css";
 
 function SignIn() {
   const [resData, setResData] = useState(null);
@@ -102,12 +96,17 @@ function SignIn() {
             className={styles.formContainer}
           >
             <Grid>
-              <Paper className="paper_logo" elevation={10}>
-                <Grid className="grid_logo">
+              <Paper className={styles.paper_logo} elevation={10}>
+                <Grid className={styles.grid_logo}>
                   <h2>Sign In</h2>
                 </Grid>
-                <Form.Group as={Col} md="12" controlId="signInEmail">
-                  <Form.Label>Email</Form.Label>
+                <Form.Group
+                  className={styles.formGroup}
+                  as={Col}
+                  md="12"
+                  controlId="signInEmail"
+                >
+                  <Form.Label className={styles.formLabel}>Email</Form.Label>
                   <Form.Control
                     className="text_field"
                     type="email"
@@ -122,8 +121,13 @@ function SignIn() {
                     Nhập email
                   </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="12" controlId="signInPassword">
-                  <Form.Label>Password</Form.Label>
+                <Form.Group
+                  className={styles.formGroup}
+                  as={Col}
+                  md="12"
+                  controlId="signInPassword"
+                >
+                  <Form.Label className={styles.formLabel}>Password</Form.Label>
                   <Form.Control
                     className="text_field"
                     type="password"
@@ -140,7 +144,7 @@ function SignIn() {
                 </Form.Group>
 
                 <Button
-                  className="btnSubmit"
+                  className={styles.btnSubmit}
                   type="submit"
                   color="primary"
                   variant="contained"

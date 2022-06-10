@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import axios from "axios";
-
+import imageCompression from "browser-image-compression";
+import { Formik } from "formik";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
-import "./styles/FileBtn.css";
-
-import imageCompression from "browser-image-compression";
-import styles from "./styles/SignUp.module.css";
-import Container from "react-bootstrap/esm/Container";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import * as yup from "yup";
+import "./styles/FileBtn.css";
+import styles from "./styles/SignIn.module.css";
 
 function SignUp() {
   const [file, setFile] = useState(null);
@@ -142,7 +142,6 @@ function SignUp() {
           lastName: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
-          // console.log(values);
           postSignUpInfo(values);
           setSubmitting(false);
         }}
@@ -161,83 +160,113 @@ function SignUp() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInFirstName">
-                <Form.Label>Họ</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstName"
-                  value={values.firstName}
-                  onChange={handleChange}
-                  isInvalid={touched.firstName && errors.firstName}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Nhập họ
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInLastName">
-                <Form.Label>Tên</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastName"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  isInvalid={touched.lastName && errors.lastName}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Nhập Tên
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  isInvalid={touched.email && errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Nhập email
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInPassword">
-                <Form.Label>Mật khẩu</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  isInvalid={touched.password && errors.password}
-                />
-
-                <Form.Control.Feedback type="invalid">
-                  Nhập mk
-                </Form.Control.Feedback>
-                <Form.Group>
-                  <Form.Label className="file">
-                    {" "}
-                    Avata
+            <Grid>
+              <Paper className={styles.paper_logo} elevation={10}>
+                <Grid className={styles.grid_logo}>
+                  <h2>Sign Up</h2>
+                </Grid>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInFirstName"
+                  >
+                    <Form.Label className={styles.formLabel}>Họ</Form.Label>
                     <Form.Control
-                      className="inside"
-                      type="file"
-                      accept=".jpg, .jpeg, .png"
-                      onChange={onUploadFileChange}
+                      type="text"
+                      name="firstName"
+                      value={values.firstName}
+                      onChange={handleChange}
+                      isInvalid={touched.firstName && errors.firstName}
                     />
-                    <CloudUploadOutlinedIcon />
-                  </Form.Label>
-                </Form.Group>
-              </Form.Group>
-            </Row>
-            <Button type="submit" variant="primary">
-              Đăng kí
-            </Button>
+                    <Form.Control.Feedback type="invalid">
+                      Nhập họ
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInLastName"
+                  >
+                    <Form.Label className={styles.formLabel}>Tên</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lastName"
+                      value={values.lastName}
+                      onChange={handleChange}
+                      isInvalid={touched.lastName && errors.lastName}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập Tên
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInEmail"
+                  >
+                    <Form.Label className={styles.formLabel}>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      isInvalid={touched.email && errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập email
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInPassword"
+                  >
+                    <Form.Label className={styles.formLabel}>
+                      Mật khẩu
+                    </Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChange}
+                      isInvalid={touched.password && errors.password}
+                    />
+
+                    <Form.Control.Feedback type="invalid">
+                      Nhập mk
+                    </Form.Control.Feedback>
+
+                    <Form.Group>
+                      <Form.Label className={styles.formFile}>
+                        {" "}
+                        Avata
+                        <Form.Control
+                          className="inside"
+                          type="file"
+                          accept=".jpg, .jpeg, .png"
+                          onChange={onUploadFileChange}
+                        />
+                        <CloudUploadOutlinedIcon />
+                      </Form.Label>
+                    </Form.Group>
+                  </Form.Group>
+                </Row>
+                <Button type="submit" variant="primary">
+                  Đăng kí
+                </Button>
+              </Paper>
+            </Grid>
           </Form>
         )}
       </Formik>
