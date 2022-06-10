@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
 import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
@@ -6,14 +6,19 @@ import PostItem from "./PostItem";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 function Profile() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.checkProfileReducer.profileId);
   const postList = useSelector((state) => state.checkProfileReducer.postList);
-  const [firstName, setFirstName] = useState(localStorage.getItem("UserFirstName"))
-  const [lastName, setLastName] = useState(localStorage.getItem("UserLastName"))
-  const userInfo = useSelector((state) => state.checkProfileReducer.profileInfo);
+  const [firstName, setFirstName] = useState(
+    localStorage.getItem("UserFirstName")
+  );
+  const [lastName, setLastName] = useState(
+    localStorage.getItem("UserLastName")
+  );
+  const userInfo = useSelector(
+    (state) => state.checkProfileReducer.profileInfo
+  );
   // const [ava, setAva] = useState(localStorage.getItem("UserAvata"));
 
   const getProfileInfo = createAsyncThunk(
@@ -32,7 +37,7 @@ function Profile() {
       return response.data.payload;
     }
   );
-  
+
   useEffect(() => {
     if (userId !== null) {
       dispatch(getProfilePosts(userId));
@@ -42,7 +47,6 @@ function Profile() {
 
   return (
     <div>
-
       {postList !== null ? (
         postList.map((postItem) => {
           return (
@@ -53,7 +57,7 @@ function Profile() {
               firstName={userInfo.firstName}
               lastName={userInfo.lastName}
               content={postItem.content}
-              ava = {userInfo.avata}
+              ava={userInfo.avata}
               image={postItem.image}
               likeList={postItem.like}
               shareList={postItem.share}

@@ -10,21 +10,20 @@ function AllAccounts() {
   const storeFollowerAccounts = useSelector(
     (state) => state.followingAccountReducer.followerAccounts
   );
-  const [url, setUrl] =useState('');
-  const uploader = (file) =>{
-  const reader = new FileReader();
-  reader.addEventListener('load', ()=>{
-      localStorage.setItem('UserAvata',reader.result)
-  })
-  reader.readAsDataURL(file);
-  }
-  
+  const [url, setUrl] = useState("");
+  const uploader = (file) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      localStorage.setItem("UserAvata", reader.result);
+    });
+    reader.readAsDataURL(file);
+  };
+
   useEffect(() => {
     if (localStorage.getItem("Token") === null) {
       navigate("/unauthorized");
     }
     dispatch(getAllAccounts());
-    
   }, []);
 
   return (
@@ -38,7 +37,7 @@ function AllAccounts() {
               id={followerAccount.id}
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
-              ava = {followerAccount.avata}
+              ava={followerAccount.avata}
             />
           );
         })

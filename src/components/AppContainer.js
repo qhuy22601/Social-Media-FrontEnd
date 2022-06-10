@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter, Routes, Route} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
@@ -13,7 +13,7 @@ import Profile from "./Profile";
 import MyProfile from "./MyProfile";
 import AllAccounts from "./AllAccounts";
 import UnauthorizedPage from "./UnauthorizedPage";
-import {EmailConfirm} from "./EmailConfirm";
+import { EmailConfirm } from "./EmailConfirm";
 import ResetPassword from "./ResetPassword";
 import Game from "./game/Game";
 import EditForm from "./EditForm";
@@ -32,14 +32,14 @@ function AppContainer() {
           <Route path="following" element={<FollowingList />} />
           <Route path="follower" element={<FollowerList />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="myprofile" element={<MyProfile />}/>
-          <Route path="editform" element={<EditForm/>}/>
+          <Route path="myprofile" element={<MyProfile />} />
+          <Route path="editform" element={<EditForm />} />
           <Route path="allaccounts" element={<AllAccounts />} />
           <Route path="game" element={<Game />} />
-          <Route path="chat" element={<Chat />}/>
+          <Route path="chat" element={<Chat />} />
         </Route>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
-        <Route path="*" element={<NotFoundPage />} />        
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>
   );

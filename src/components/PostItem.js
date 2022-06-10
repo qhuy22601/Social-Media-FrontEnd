@@ -4,13 +4,25 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
-import { RiHeartFill, RiHeartLine, RiMessage2Fill, RiShareForwardFill, RiSendPlane2Fill,} from "react-icons/ri";
+import {
+  RiHeartFill,
+  RiHeartLine,
+  RiMessage2Fill,
+  RiShareForwardFill,
+  RiSendPlane2Fill,
+} from "react-icons/ri";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
 import styles from "./styles/PostItem.module.css";
 import { useDispatch } from "react-redux";
-import {addLike, addShare, addComment,getFollowingPosts,del} from "../feature/followingPost/followingPostSlice";
-import ClearIcon from '@mui/icons-material/Clear';
+import {
+  addLike,
+  addShare,
+  addComment,
+  getFollowingPosts,
+  del,
+} from "../feature/followingPost/followingPostSlice";
+import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton } from "@mui/material";
 function PostItem(props) {
   const dispatch = useDispatch();
@@ -35,29 +47,29 @@ function PostItem(props) {
       dispatch(addLike({ postId: postId, userId: currentUserId }));
     }
   }
-  const styles = ({
+  const styles = {
     circleImageLayout: {
       width: 50,
       height: 50,
-      borderRadius: 50/2
+      borderRadius: 50 / 2,
     },
     circle: {
       width: 30,
       height: 30,
-      borderRadius: 30/2
+      borderRadius: 30 / 2,
     },
-    color:{
-      backgroundColor:'#282828'
-    }
-  });
+    color: {
+      backgroundColor: "#282828",
+    },
+  };
 
   function handleShareClick(e) {
     dispatch(addShare({ postId: postId, userId: currentUserId }));
     dispatch(getFollowingPosts());
   }
 
-  function handleDelClick(e){
-    dispatch(del({ postId: postId}));
+  function handleDelClick(e) {
+    dispatch(del({ postId: postId }));
     dispatch(getFollowingPosts());
   }
 
@@ -99,16 +111,24 @@ function PostItem(props) {
       <Row>
         <div className="d-flex align-items-center mb-3">
           <div className="mx-3">
-            <img src={props.ava}  style = {styles.circleImageLayout}></img>
+            <img src={props.ava} style={styles.circleImageLayout}></img>
           </div>
-       
+
           <div className="d-flex flex-column">
-          <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
-          <div className="text-secondary">{timeAgo.format(new Date(props.postDate).getTime(), 'twitter')}</div>
+            <div className="fw-bold">
+              {props.firstName + " " + props.lastName}
+            </div>
+            <div className="text-secondary">
+              {timeAgo.format(new Date(props.postDate).getTime(), "twitter")}
+            </div>
           </div>
-          <div class = "d-flex flex-row-reverse" color="primary" onClick={handleDelClick}>
-            <IconButton >
-            <ClearIcon />
+          <div
+            class="d-flex flex-row-reverse"
+            color="primary"
+            onClick={handleDelClick}
+          >
+            <IconButton>
+              <ClearIcon />
             </IconButton>
           </div>
         </div>
@@ -202,7 +222,7 @@ function PostItem(props) {
               <div className="border rounded border-info my-3 px-2 pb-2">
                 <div className="d-flex align-items-center my-2">
                   <div className="me-auto mx-1">
-                  <img src={props.ava}  style = {styles.circle}></img>
+                    <img src={props.ava} style={styles.circle}></img>
                   </div>
                   <div className="w-100 mx-1 fw-bold">
                     <span>{commentItem.userFullname}</span>

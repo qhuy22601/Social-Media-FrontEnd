@@ -10,9 +10,9 @@ import Container from "react-bootstrap/esm/Container";
 
 import { RiLoginBoxLine } from "react-icons/ri";
 
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 import styles from "./styles/SignIn.module.css";
 import axios from "axios";
@@ -38,23 +38,25 @@ function SignIn() {
         password: inputData.password,
       },
     });
-    
+
     if (response.data !== null && response.data.status === "that bai") {
       showWarningToast(response.data.message);
     }
-    
+
     if (response.data !== null && response.data.status === "thanh cong") {
       setResData(response.data);
-      
+
       localStorage.setItem("UserId", response.data.payload.user.id);
-      localStorage.setItem("UserFirstName", response.data.payload.user.firstName);
+      localStorage.setItem(
+        "UserFirstName",
+        response.data.payload.user.firstName
+      );
       localStorage.setItem("UserLastName", response.data.payload.user.lastName);
       localStorage.setItem("UserEmail", response.data.payload.user.email);
       localStorage.setItem("UserAvata", response.data.payload.user.avata);
       localStorage.setItem("Token", response.data.payload.token);
       navigate("/newsfeed");
     }
-
   }
 
   function showWarningToast(inputMessage) {
@@ -80,7 +82,7 @@ function SignIn() {
           email: "",
           password: "",
         }}
-        onSubmit={(values, {setSubmitting}) => {
+        onSubmit={(values, { setSubmitting }) => {
           postSignInInfo(values);
           setSubmitting(false);
         }}
@@ -99,54 +101,65 @@ function SignIn() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-
-<Grid>
-            <Paper className='paper_logo' elevation={10}>
-                <Grid className='grid_logo'>
-                     <h2>Sign In</h2>
+            <Grid>
+              <Paper className="paper_logo" elevation={10}>
+                <Grid className="grid_logo">
+                  <h2>Sign In</h2>
                 </Grid>
                 <Form.Group as={Col} md="12" controlId="signInEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                className="text_field" 
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                isInvalid={touched.email && errors.email}
-                placeholder='Enter email' required />
-                 <Form.Control.Feedback type="invalid">
-                 Nhập email
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="12" controlId="signInPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                className="text_field" 
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                isInvalid={touched.password && errors.password}
-                placeholder='Enter username' required />
-                 <Form.Control.Feedback type="invalid">
-                 Nhập Password
-                </Form.Control.Feedback>
-              </Form.Group>
-                
-                <Button className='btnSubmit'  type='submit' color="primary" variant='contained'>Sign in</Button>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    className="text_field"
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    isInvalid={touched.email && errors.email}
+                    placeholder="Enter email"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Nhập email
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="signInPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    className="text_field"
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    isInvalid={touched.password && errors.password}
+                    placeholder="Enter username"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Nhập Password
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Button
+                  className="btnSubmit"
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                >
+                  Sign in
+                </Button>
 
                 <div className="link">
-                    <Typography>
-                        <Link to='/forgot'>Forgot password?</Link>
-                    </Typography>
-                    <Typography> Do you have an account?
-                        <Link to='/signup'>Sign Up?</Link>
-                    </Typography>
+                  <Typography>
+                    <Link to="/forgot">Forgot password?</Link>
+                  </Typography>
+                  <Typography>
+                    {" "}
+                    Do you have an account?
+                    <Link to="/signup">Sign Up?</Link>
+                  </Typography>
                 </div>
-            </Paper>
-        </Grid>
-            
+              </Paper>
+            </Grid>
           </Form>
         )}
       </Formik>

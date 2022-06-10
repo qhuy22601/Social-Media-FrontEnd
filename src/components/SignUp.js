@@ -7,9 +7,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import "./styles/FileBtn.css" 
-
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import "./styles/FileBtn.css";
 
 import imageCompression from "browser-image-compression";
 import styles from "./styles/SignUp.module.css";
@@ -19,13 +18,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-
   const [file, setFile] = useState(null);
   const [file64String, setFile64String] = useState(null);
   const [file64StringWithType, setFile64StringWithType] = useState(null);
   const [userRole, setUserRole] = useState("user");
   const [resData, setResData] = useState(null);
-  
+
   let navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -45,7 +43,7 @@ function SignUp() {
         lastName: inputData.lastName,
         email: inputData.email,
         password: inputData.password,
-        avata: file64StringWithType, 
+        avata: file64StringWithType,
         role: userRole,
       },
     });
@@ -53,15 +51,14 @@ function SignUp() {
     if (response.data !== null) {
       setResData(response.data);
     }
-    
+
     if (response.data !== null && response.data.status === "that bai") {
-      showWarningToast(response.data.message);      
+      showWarningToast(response.data.message);
     }
 
-    if (response.data!== null && response.data.status === "thanh cong") {
+    if (response.data !== null && response.data.status === "thanh cong") {
       navigate("/");
     }
-
   }
   function onUploadFileChange(e) {
     setFile64String(null);
@@ -164,7 +161,6 @@ function SignUp() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-
             <Row className="mb-3">
               <Form.Group as={Col} md="12" controlId="signInFirstName">
                 <Form.Label>Họ</Form.Label>
@@ -225,13 +221,17 @@ function SignUp() {
                   Nhập mk
                 </Form.Control.Feedback>
                 <Form.Group>
-                <Form.Label  className="file">  Avata        
-                <Form.Control className="inside"
-                  type="file"
-                  accept=".jpg, .jpeg, .png"
-                  onChange={onUploadFileChange}        
-                /><CloudUploadOutlinedIcon />
-                </Form.Label>
+                  <Form.Label className="file">
+                    {" "}
+                    Avata
+                    <Form.Control
+                      className="inside"
+                      type="file"
+                      accept=".jpg, .jpeg, .png"
+                      onChange={onUploadFileChange}
+                    />
+                    <CloudUploadOutlinedIcon />
+                  </Form.Label>
                 </Form.Group>
               </Form.Group>
             </Row>
@@ -241,12 +241,7 @@ function SignUp() {
           </Form>
         )}
       </Formik>
-
-     
     </Container>
-
-
-
   );
 }
 
