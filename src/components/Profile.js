@@ -1,10 +1,9 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
-import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
 import PostItem from "./PostItem";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 function Profile() {
   const dispatch = useDispatch();

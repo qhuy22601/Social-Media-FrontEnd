@@ -1,16 +1,14 @@
-import React, { useState, Component } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
 import axios from "axios";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import styles from "./styles/SignUp.module.css";
-import Container from "react-bootstrap/esm/Container";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import styles from "./styles/SignIn.module.css";
 
 function ResetPassword() {
   function showFailMessage(inputMessage) {
@@ -110,7 +108,7 @@ function ResetPassword() {
           handleBlur,
           values,
           touched,
-          isInValid,
+          isInValid,‚
           errors,
         }) => ( */}
       <Form noValidate className={styles.formContainer}>

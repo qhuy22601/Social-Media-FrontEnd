@@ -1,29 +1,25 @@
-import React, { useState } from "react";
-
-import { Hashicon } from "@emeraldpay/hashicon-react";
+import ClearIcon from "@mui/icons-material/Clear";
+import { IconButton } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-
+import React, { useState } from "react";
+import { Button, Form, Row } from "react-bootstrap";
 import {
   RiHeartFill,
   RiHeartLine,
   RiMessage2Fill,
-  RiShareForwardFill,
   RiSendPlane2Fill,
+  RiShareForwardFill,
 } from "react-icons/ri";
-import { Button, Col, Form, Row } from "react-bootstrap";
-
-import styles from "./styles/PostItem.module.css";
 import { useDispatch } from "react-redux";
 import {
+  addComment,
   addLike,
   addShare,
-  addComment,
-  getFollowingPosts,
   del,
+  getFollowingPosts,
 } from "../feature/followingPost/followingPostSlice";
-import ClearIcon from "@mui/icons-material/Clear";
-import { IconButton } from "@mui/material";
+
 function PostItem(props) {
   const dispatch = useDispatch();
 

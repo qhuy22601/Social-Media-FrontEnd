@@ -1,32 +1,18 @@
+import imageCompression from "browser-image-compression";
 import React, { useState } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
-import axios from "axios";
-
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import "./styles/FileBtn.css" 
-import updateProfile from "../feature/updateProfile/updateProfile";
-
-import { BsFillPersonPlusFill } from "react-icons/bs";
-
-
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-
-import imageCompression from "browser-image-compression";
-import styles from "./styles/SignUp.module.css";
-import Container from "react-bootstrap/esm/Container";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import updateProfile from "../feature/updateProfile/updateProfile";
+import "./styles/FileBtn.css";
+import styles from "./styles/SignIn.module.css";
 
 function EditForm() {
-
   const [file, setFile] = useState(null);
   const [file64String, setFile64String] = useState(null);
   const [file64StringWithType, setFile64StringWithType] = useState(null);
@@ -34,27 +20,23 @@ function EditForm() {
   const [resData, setResData] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
-  const {id} = useParams();
+  const { id } = useParams();
 
-  
   let navigate = useNavigate();
 
-
-
-  const handleClick = (e)=>{
-    e.preventDefault()
-    const user = {firstName, lastName}
-    console.log(user)
-    updateProfile.update(id, user).then((response)=>{
-        navigate('/')
-      }).catch(error=>{
-        console.log(error);
+  const handleClick = (e) => {
+    e.preventDefault();
+    const user = { firstName, lastName };
+    console.log(user);
+    updateProfile
+      .update(id, user)
+      .then((response) => {
+        navigate("/");
       })
-   
-}
-
-
-
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   function onUploadFileChange(e) {
     setFile64String(null);
@@ -64,8 +46,6 @@ function EditForm() {
 
     compressImageFile(e);
   }
-
-
 
   function fileToBase64(file, cb) {
     const reader = new FileReader();
@@ -120,52 +100,41 @@ function EditForm() {
   return (
     <Container fluid className={styles.container}>
       <ToastContainer />
-          <Form
-      
-          >
-
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInFirstName">
-                <Form.Label>Họ</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstName"
-                  value={firstName}
-                  onChange={(e)=>setFirstName(e.target.value)}
-             
-                />
-                <Form.Control.Feedback type="invalid">
-                  Nhập họ
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInLastName">
-                <Form.Label>Tên</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastName"
-                  value={lastName}
-                  onChange={(e)=>setLastName(e.target.value)}
-
-               
-                />
-                <Form.Control.Feedback type="invalid">
-                  Nhập Tên
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Button onClick={(e)=>handleClick(e)} variant="primary">
-              Đổi
-            </Button>
-          </Form>
-      
-     
+      <Form>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="12" controlId="signInFirstName">
+            <Form.Label>Họ</Form.Label>
+            <Form.Control
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Nhập họ
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="12" controlId="signInLastName">
+            <Form.Label>Tên</Form.Label>
+            <Form.Control
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Nhập Tên
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Button onClick={(e) => handleClick(e)} variant="primary">
+          Đổi
+        </Button>
+      </Form>
     </Container>
-
-
-
   );
-} 
+}
 
 export default EditForm;
