@@ -19,6 +19,7 @@ import "./styles/Header.css";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import InsertEmoticonOutlinedIcon from "@mui/icons-material/InsertEmoticonOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import "./styles/Header.css";
 
 import styles from "./styles/NewsFeed.module.css";
 import { style } from "@mui/system";
@@ -34,12 +35,16 @@ function NewsFeed() {
       width: 600,
       color: "white",
     },
-    bn: {
-      color: "#0d6efd",
-    },
-    name: {
-      color: "white",
+    h:{
       textTransform: 'capitalize'
+    },
+    bn:{
+      color: '#0d6efd'
+    },
+    name:{
+      color: 'black',
+      textTransform: 'capitalize'
+   
     },
     cancle: {
       marginRight: 70,
@@ -99,8 +104,9 @@ function NewsFeed() {
   //   this.socket.emit('login', localStorage.getItem("UserFirstName")+" " + localStorage.getItem("UserLastName"))
   // }
 
-  document.body.style.backgroundColor = "#1c1e21";
+  // document.body.style.backgroundColor = "#1c1e21";
   return (
+    <div className="main">
     <Container>
       <div className="header">
         <div className="header_left">
@@ -159,9 +165,11 @@ function NewsFeed() {
 
           <div className="iconButton">
             <IconButton>
+
               <Link to="editform">
                 <AppsIcon />
               </Link>
+
             </IconButton>
           </div>
           <div className="iconButton">
@@ -189,6 +197,7 @@ function NewsFeed() {
         </Col>
       </Container>
     </Container>
+    </div>
   );
 }
 

@@ -10,7 +10,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./styles/SignIn.module.css";
 
+
 function ResetPassword() {
+  const[firstName, setFirstName] = useState("");
+  const[lastName, setLastName] = useState("");
   function showFailMessage(inputMessage) {
     toast.error(inputMessage, {
       position: "bottom-center",
@@ -24,31 +27,20 @@ function ResetPassword() {
     });
   }
 
+  const[resData, setResData] = useState(null);
+
   let navigate = useNavigate();
-  // const schemes= yup.object().shape({
-  //   password:yup.string().required(),
-  // });
 
-  //   async function changePassword(inpPass){
-  //     try{
-  //       const response = await axios({
-  //         method: 'post',
-  //         url: 'api/auth/users/changepass',
-  //         headers: {
-  //           Authorization: localStorage.getItem('Token'),
-  //         },
-  //         data:{
-  //             password:inpPass.password,
-  //         }
-  //       });
-  //       if (response.data !== null && response.data.status === "that bai") {
-  //           console.log("Loixo");
-  //       }
 
-  //       if( response.data !==null&&response.data.status === "thanh cong") {
-  //           response.data.payload = response.data.payload.users.password;
-  //           navigate("/profile");
-  //       }
+  function handleChange(e){
+    e.preventDefault();
+    setFirstName( e.target.value);
+    
+  }
+  function handle(e){
+    e.preventDefault();
+    setLastName( e.target.value);
+  }
 
   //     }catch(e){
   //       showFailMessage("Loioix!");
@@ -72,22 +64,67 @@ function ResetPassword() {
         showFailMessage("Thành công!");
         navigate("/newfeed");
       }
+
       if (res.data !== null && res.data.status === "that bai") {
-        showFailMessage("Lỗi rồi!");
+        console.log("Lỗi rồi!");
       }
+
     } catch (e) {
       showFailMessage("lỗi rồi");
     }
-  }
+    
 
-  async function handleChangePass(e) {
-    e.preventDefault();
-    changePass(pass);
   }
+  async function changeName(inputData){
 
-  function handlePassChange(e) {
-    setPass(e.target.value);
+    const res = await axios({
+      method: "put",
+      url: "/api/auth/users/changepass",
+      header:{
+        Authorization:localStorage.getItem('Token'),
+      },
+      data:{
+        firstName : inputData.firstName,
+        lastName: inputData.lastName,
+      },
+    });
+    if (res.data !== null && res.data.status === "that bai") {
+      console.log("Lỗi rồi!");
+    }
+    if(res.data.status ==="thanh cong" && res.data!== null){
+      setResData(res.data);
+      localStorage.removeItem("UserFirstName");
+      localStorage.removeItem("UserLastName");
+      localStorage.setItem("UserLastName", res.data.payload.user.lastName);
+      localStorage.setItem("UserFirstName", res.data.payload.user.firstName);
+      // navigate("/newfeed");
+    }
+
   }
+  return (
+  <div>
+    <form >
+      <input 
+       
+          type="text"
+          name="firstName"
+          value={firstName}
+          onChange={handleChange}
+          placeholder='Enter firstName'
+       />
+       <input
+        
+          type="text"
+          name="lastName"
+          value={lastName}
+          onChange={handle}
+          placeholder='Enter lastName'
+          />
+      
+            <Button className='btnSubmit'  type='submit' color="primary" onClick={changeName} >change</Button>
+
+
+
 
   return (
     <Container fluid className={styles.container}>
@@ -120,20 +157,24 @@ function ResetPassword() {
               name="password"
               placeholder="password"
               value={pass}
-              onChange={handlePassChange}
+              onChange={handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Nhập pass
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Button type="submit" variant="primary" onClick={handleChangePass}>
+        <Button type="submit" variant="primary" onClick={handle}>
           Đổi
         </Button>
       </Form>
       {/* )}
         </Formik> */}
     </Container>
+    </form>
+  </div>
   );
+ 
 }
+
 export default ResetPassword;

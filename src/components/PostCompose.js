@@ -14,6 +14,7 @@ import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 
 import "./styles/FileBtn.css";
 
+
 function PostCompose() {
   const dispatch = useDispatch();
   const storeFollowingPosts = useSelector(
@@ -40,6 +41,7 @@ function PostCompose() {
     });
     reader.readAsDataURL(file);
   };
+
   useEffect(() => {
     setUrl(localStorage.getItem("UserAvata"));
   }, []);
@@ -49,10 +51,12 @@ function PostCompose() {
       height: 50,
       borderRadius: 50 / 2,
     },
+
     compose: {
       backgroundColor: "#282828",
     },
     name:{
+
       textTransform: 'capitalize'
     }
   };
@@ -137,6 +141,8 @@ function PostCompose() {
     }
 
     compressImageFile(e);
+
+    // handleChange(e);
   }
 
   function fileToBase64(file, cb) {
@@ -193,7 +199,9 @@ function PostCompose() {
                 <div className="mx-3">
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
+
                 <div className="fs-4 fw-bold" style={styles.name}>{userFullname}</div>
+
               </div>
             </Form.Label>
             <Form.Control
@@ -206,6 +214,7 @@ function PostCompose() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
+
             <Form.Label className="file">
               <Form.Control
                 className="inside"
@@ -214,6 +223,7 @@ function PostCompose() {
                 onChange={onUploadFileChange}
               />
               <CloudUploadOutlinedIcon />
+
             </Form.Label>
           </Form.Group>
           <div className="d-flex justify-content-end align-items-center">
@@ -228,7 +238,16 @@ function PostCompose() {
           </div>
         </Form>
         {file64String !== null ? (
+          <div>
           <img src={file64StringWithType} alt="chosen" />
+          {/* <video src={file64StringWithType} alt="chosen"></video> */}
+          {/* <Player
+          playsInline
+          src={videoSrc}
+          alt="chosen"
+          fluid={false}
+          ></Player> */}
+          </div>
         ) : (
           <span></span>
         )}
