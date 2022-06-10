@@ -39,6 +39,7 @@ function NewsFeed() {
     },
     name: {
       color: "white",
+      textTransform: 'capitalize'
     },
     cancle: {
       marginRight: 70,

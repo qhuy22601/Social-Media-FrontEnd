@@ -57,6 +57,9 @@ function PostItem(props) {
     color: {
       backgroundColor: "#282828",
     },
+    name:{
+      textTransform: 'capitalize'
+    }
   };
 
   function handleShareClick(e) {
@@ -111,7 +114,7 @@ function PostItem(props) {
           </div>
 
           <div className="d-flex flex-column">
-            <div className="fw-bold">
+            <div className="fw-bold" style={styles.name}>
               {props.firstName + " " + props.lastName}
             </div>
             <div className="text-secondary">

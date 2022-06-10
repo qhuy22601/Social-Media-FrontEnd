@@ -52,6 +52,9 @@ function PostCompose() {
     compose: {
       backgroundColor: "#282828",
     },
+    name:{
+      textTransform: 'capitalize'
+    }
   };
 
   function showSuccessMessage(inputMessage) {
@@ -190,7 +193,7 @@ function PostCompose() {
                 <div className="mx-3">
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
-                <div className="fs-4 fw-bold">{userFullname}</div>
+                <div className="fs-4 fw-bold" style={styles.name}>{userFullname}</div>
               </div>
             </Form.Label>
             <Form.Control
