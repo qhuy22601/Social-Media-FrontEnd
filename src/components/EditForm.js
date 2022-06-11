@@ -1,4 +1,5 @@
 import imageCompression from "browser-image-compression";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -164,9 +165,67 @@ function EditForm() {
   let lName = $('#lastName').val();
 
   const schema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
+    firstName: yup.string(),
+    lastName: yup.string(),
+    avata: yup.string(),
   });
+
+  function onUploadFileChange(e) {
+    setFile64String(null);
+    if (e.target.files < 1 || !e.target.validity.valid) {
+      return;
+    }
+
+    compressImageFile(e);
+  }
+
+  function fileToBase64(file, cb) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      cb(null, reader.result);
+    };
+    reader.onerror = function (error) {
+      cb(error, null);
+    };
+  }
+
+  function fileToBase64(file, cb) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      cb(null, reader.result);
+    };
+    reader.onerror = function (error) {
+      cb(error, null);
+    };
+  }
+
+  async function compressImageFile(event) {
+    const imageFile = event.target.files[0];
+
+    const options = {
+      maxWidthOrHeight: 250,
+      useWebWorker: true,
+    };
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      // input file is compressed in compressedFile, now write further logic here
+
+      fileToBase64(compressedFile, (err, result) => {
+        if (result) {
+          setFile(result);
+          //   console.log(file);
+          //   console.log(String(result.split(",")[1]));
+          setFile64StringWithType(result);
+          setFile64String(String(result.split(",")[1]));
+        }
+      });
+    } catch (error) {
+      setFile64String(null);
+      // console.log(error);
+    }
+  }
 
   async function changeName(inputData){
 
@@ -179,6 +238,7 @@ function EditForm() {
       data:{
         firstName : inputData.firstName,
         lastName: inputData.lastName,
+        avata:file64StringWithType,
       },
     });
     if (res.data !== null && res.data.status === "that bai") {
@@ -283,6 +343,19 @@ function EditForm() {
                     Nhập Tên
                   </Form.Control.Feedback>
                 </Form.Group>
+                <Form.Group>
+                      <Form.Label className={styles.formFile}>
+                        {" "}
+                        Avata
+                        <Form.Control
+                          className="inside"
+                          type="file"
+                          accept=".jpg, .jpeg, .png"
+                          onChange={onUploadFileChange}
+                        />
+                        <CloudUploadOutlinedIcon />
+                      </Form.Label>
+                    </Form.Group>
 
                 <Button
                   className={styles.btnSubmit}
