@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getProfilePosts = createAsyncThunk(
-  "api/v1/users/getProfilePosts",
+  "api/auth/users/getProfilePosts",
   async (userId, thunkAPI) => {
     const response = await axios({
       method: "post",

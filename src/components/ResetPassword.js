@@ -79,7 +79,7 @@ function ResetPassword() {
 
     const res = await axios({
       method: "put",
-      url: "/api/auth/users/changepass",
+      url: "/api/auth/users/change/" + localStorage.getItem("UserId"),
       header:{
         Authorization:localStorage.getItem('Token'),
       },

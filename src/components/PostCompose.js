@@ -90,7 +90,7 @@ function PostCompose() {
   function handleContentChange(e) {
     setPostContent(e.target.value);
     setPostContentCount(e.target.value.length);
-    if (postContentCount === 0 || postContentCount > 200) {
+    if (postContentCount -1 === 0 || postContentCount > 200) {
       setDisablePostButton(true);
     } else {
       setDisablePostButton(false);
