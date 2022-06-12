@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-
-import { Hashicon } from "@emeraldpay/hashicon-react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getProfileId } from "../feature/checkProfile/checkProfileSlice";
-import { unfollowAccount } from "../feature/followingAccounts/followingAccountSlice";
-
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { RiCheckFill, RiDeleteBin6Line } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getProfileId } from "../feature/checkProfile/checkProfileSlice";
+import { unfollowAccount } from "../feature/followingAccounts/followingAccountSlice";
+import styles from "./styles/Following.module.css";
 
 function FollowingAccountItem(props) {
   const dispatch = useDispatch();
@@ -36,8 +34,8 @@ function FollowingAccountItem(props) {
     },
 
     name: {
-      color: "white",
-      textTransform: 'capitalize'
+      color: "#1c1e21",
+      textTransform: "capitalize",
     },
     btnn: {
       color: "#7eb4e9",

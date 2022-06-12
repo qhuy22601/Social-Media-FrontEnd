@@ -50,8 +50,8 @@ function FollowerAccountItem(props) {
     },
 
     name: {
-      color: "white",
-      textTransform: 'capitalize'
+      color: "#1c1e21",
+      textTransform: "capitalize",
     },
     btnn: {
       color: "#7eb4e9",

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getFollowerAccounts } from "../feature/followingAccounts/followingAccountSlice";
 import FollowerAccountItem from "./FollowerAccountItem";
+import styles from "./styles/Following.module.css";
 
 function FollowerList() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function FollowerList() {
 
   return (
     <div>
-      <h1>Người theo dõi</h1>
+      <h1 className={styles.title}>Người theo dõi</h1>
       {storeFollowerAccounts ? (
         storeFollowerAccounts.map((followerAccount) => {
           return (

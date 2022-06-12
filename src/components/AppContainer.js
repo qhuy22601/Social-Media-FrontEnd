@@ -1,23 +1,23 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
-
+import { HashRouter, Route, Routes } from "react-router-dom";
+import AllAccounts from "./AllAccounts";
+import Chat from "./Chat";
+import EditForm from "./EditForm";
+import { EmailConfirm } from "./EmailConfirm";
+import FollowerList from "./FollowerList";
+import FollowingList from "./FollowingList";
+import Game from "./game/Game";
 import HomePage from "./HomePage";
-import NotFoundPage from "./NotFoundPage";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import MyProfile from "./MyProfile";
 import NewsFeed from "./NewsFeed";
 import NewsFeedContent from "./NewsFeedContent";
-import FollowingList from "./FollowingList";
-import FollowerList from "./FollowerList";
+import NotFoundPage from "./NotFoundPage";
 import Profile from "./Profile";
-import MyProfile from "./MyProfile";
-import AllAccounts from "./AllAccounts";
-import UnauthorizedPage from "./UnauthorizedPage";
-import { EmailConfirm } from "./EmailConfirm";
 import ResetPassword from "./ResetPassword";
-import Game from "./game/Game";
-import EditForm from "./EditForm";
-import Chat from "./Chat";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import UnauthorizedPage from "./UnauthorizedPage";
+
 function AppContainer() {
   return (
     <HashRouter>

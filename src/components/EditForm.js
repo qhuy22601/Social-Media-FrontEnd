@@ -1,20 +1,18 @@
-import imageCompression from "browser-image-compression";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import axios from "axios";
+import imageCompression from "browser-image-compression";
+import { Formik } from "formik";
+import $ from "jquery";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import updateProfile from "../feature/updateProfile/updateProfile";
-import { Formik } from "formik";
 import * as yup from "yup";
 import styles from "./styles/SignIn.module.css";
-import $ from 'jquery';
 
 function EditForm() {
   const [file, setFile] = useState(null);
@@ -115,13 +113,10 @@ function EditForm() {
   //   });
   // }
 
- 
-
-
   // function handleChange(e){
   //   e.preventDefault();
   //   setFirstName( e.target.value);
-    
+
   // }
   // function handle(e){
   //   e.preventDefault();
@@ -158,11 +153,10 @@ function EditForm() {
   //   } catch (e) {
   //     showFailMessage("lỗi rồi");
   //   }
-    
 
   // }
-  let fName = $('#firstName').val();
-  let lName = $('#lastName').val();
+  let fName = $("#firstName").val();
+  let lName = $("#lastName").val();
 
   const schema = yup.object().shape({
     firstName: yup.string(),
@@ -227,18 +221,17 @@ function EditForm() {
     }
   }
 
-  async function changeName(inputData){
-
+  async function changeName(inputData) {
     const res = await axios({
       method: "put",
       url: "/api/auth/users/change/" + localStorage.getItem("UserId"),
       headers: {
         Authorization: localStorage.getItem("Token"),
       },
-      data:{
-        firstName : inputData.firstName,
+      data: {
+        firstName: inputData.firstName,
         lastName: inputData.lastName,
-        avata:file64StringWithType,
+        avata: file64StringWithType,
       },
     });
     if (res.data !== null && res.data.status === "that bai") {
@@ -255,7 +248,6 @@ function EditForm() {
       localStorage.removeItem("UserAvata");
       navigate("/");
     }
-
   }
   function showWarningToast(inputMessage) {
     toast.warn("Invalid input", {
@@ -270,7 +262,6 @@ function EditForm() {
     });
     console.log("toast");
   }
-
 
   return (
     <Container fluid className={styles.container}>
@@ -300,71 +291,70 @@ function EditForm() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-           
-                <Form.Group
-                  className={styles.formGroup}
-                  as={Col}
-                  md="12"
-                  controlId="changeFirstName"
-                >
-                  <Form.Label className={styles.formLabel}>Họ</Form.Label>
-                  <Form.Control
-                    className="text_field"
-                    type="text"
-                    name="firstName"
-                    value={values.firstName}
-                    onChange={handleChange}
-                    isInvalid={touched.firstName && errors.firstName}
-                    placeholder="Họ"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Nhập Họ
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group
-                  className={styles.formGroup}
-                  as={Col}
-                  md="12"
-                  controlId="changeLastName"
-                >
-                  <Form.Label className={styles.formLabel}>lastName</Form.Label>
-                  <Form.Control
-                    className="text_field"
-                    type="text"
-                    name="lastName"
-                    value={values.lastName}
-                    onChange={handleChange}
-                    isInvalid={touched.lastName && errors.lastName}
-                    placeholder="Tên"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Nhập Tên
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group>
-                      <Form.Label className={styles.formFile}>
-                        {" "}
-                        Avata
-                        <Form.Control
-                          className="inside"
-                          type="file"
-                          accept=".jpg, .jpeg, .png"
-                          onChange={onUploadFileChange}
-                        />
-                        <CloudUploadOutlinedIcon />
-                      </Form.Label>
-                    </Form.Group>
+            <Form.Group
+              className={styles.formGroup}
+              as={Col}
+              md="12"
+              controlId="changeFirstName"
+            >
+              <Form.Label className={styles.formLabel}>Họ</Form.Label>
+              <Form.Control
+                className="text_field"
+                type="text"
+                name="firstName"
+                value={values.firstName}
+                onChange={handleChange}
+                isInvalid={touched.firstName && errors.firstName}
+                placeholder="Họ"
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Nhập Họ
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group
+              className={styles.formGroup}
+              as={Col}
+              md="12"
+              controlId="changeLastName"
+            >
+              <Form.Label className={styles.formLabel}>lastName</Form.Label>
+              <Form.Control
+                className="text_field"
+                type="text"
+                name="lastName"
+                value={values.lastName}
+                onChange={handleChange}
+                isInvalid={touched.lastName && errors.lastName}
+                placeholder="Tên"
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Nhập Tên
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className={styles.formFile}>
+                {" "}
+                Avata
+                <Form.Control
+                  className="inside"
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={onUploadFileChange}
+                />
+                <CloudUploadOutlinedIcon />
+              </Form.Label>
+            </Form.Group>
 
-                <Button
-                  className={styles.btnSubmit}
-                  type="submit"
-                  color="primary"
-                  variant="contained"
-                >
-                  Đổi
-                </Button>
+            <Button
+              className={styles.btnSubmit}
+              type="submit"
+              color="primary"
+              variant="contained"
+            >
+              Đổi
+            </Button>
           </Form>
         )}
       </Formik>

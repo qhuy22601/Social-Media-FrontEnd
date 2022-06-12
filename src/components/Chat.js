@@ -1,9 +1,9 @@
-import React, { Component } from "react";
 import $ from "jquery";
-import Messages from "./message-list";
-import Input from "./input";
 import _map from "lodash/map";
+import React from "react";
 import io from "socket.io-client";
+import Input from "./input";
+import Messages from "./message-list";
 import "./styles/Chat.css";
 
 export default class Chat extends React.Component {

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.min.css";
-import "./cropper.css";
+import React, { Component } from "react";
 import image from "../image.png";
+import "./cropper.css";
 export class Cropper extends Component {
   state = {
     imageDestination: "",
