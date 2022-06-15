@@ -1,0 +1,12 @@
+.display:hover+.hide {
+    display: block;
+    color: rgb(236, 23, 12);
+}
+
+.hide {
+    display: none;
+}
+
+.display {
+    color: saddlebrown
+}

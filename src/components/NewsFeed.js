@@ -50,7 +50,8 @@ function NewsFeed() {
       marginRight: 70,
     },
   };
-
+  const [initialList, setInitialList] = useState([]);
+  const [items, setItems] = useState([]);
   const [userName, setUserName] = useState(
     localStorage.getItem("UserFirstName") +
       " " +
@@ -89,12 +90,39 @@ function NewsFeed() {
       navigate("/unauthorized");
     }
   });
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const handleChange =({target})=>{
 
-  function handleChange(e) {
-    setSearch(e.target.value);
+    setSearch(target.value);
+    if (!target.value) {
+      setItems(initialList);
+      return;
+    }
+    const lowerSeach = target.value.toLowerCase();
+    const filter = items.filter(({ name }) =>
+      name.common.toLowerCase().includes(lowerSeach)
+    );
+    setItems(filter);
   }
 
-  function cancel(e) {
+  async function load(){
+    fetch("api/auth/users")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          setInitialList(result);
+        },
+        (error) => {
+          setIsLoaded(false);
+          setError(error);
+        }
+      );
+  }
+
+  function cancel() {
     setSearch("");
   }
 
@@ -109,9 +137,12 @@ function NewsFeed() {
     <div className="main">
     <Container>
       <div className="header">
+      {/* {items.length>0 &&( */}
         <div className="header_left">
           <div className="header_input" onClick={searchh}>
+            <Link to="search">
             <SearchIcon />
+            </Link>
             <input
               placeholder="Search"
               type="text"
@@ -121,7 +152,9 @@ function NewsFeed() {
             />
             <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
           </div>
+          
         </div>
+      {/* )} */}
 
         <div className="header_center">
           <div className="header_option header_option--active">

@@ -41,10 +41,13 @@ function SignIn() {
       setResData(response.data);
 
       localStorage.setItem("UserId", response.data.payload.user.id);
-      localStorage.setItem("UserFirstName", response.data.payload.user.firstName );
+      localStorage.setItem("UserFirstName",response.data.payload.user.firstName);
       localStorage.setItem("UserLastName", response.data.payload.user.lastName);
       localStorage.setItem("UserEmail", response.data.payload.user.email);
       localStorage.setItem("UserAvata", response.data.payload.user.avata);
+      localStorage.setItem("UserAddress", response.data.payload.user.address);
+      localStorage.setItem("UserPhoneNumber",response.data.payload.user.phoneNumber);
+      localStorage.setItem("UserBirthDate",response.data.payload.user.birthDate);
       localStorage.setItem("Token", response.data.payload.token);
       navigate("/newsfeed");
     }
@@ -95,7 +98,7 @@ function SignIn() {
             <Grid>
               <Paper className={styles.paper_logo} elevation={10}>
                 <Grid className={styles.grid_logo}>
-                  <h2>Sign In</h2>
+                  <h2> Sign In </h2>
                 </Grid>
                 <Form.Group
                   className={styles.formGroup}
@@ -103,7 +106,7 @@ function SignIn() {
                   md="12"
                   controlId="signInEmail"
                 >
-                  <Form.Label className={styles.formLabel}>Email</Form.Label>
+                  <Form.Label className={styles.formLabel}> Email </Form.Label>
                   <Form.Control
                     className="text_field"
                     type="email"
@@ -139,7 +142,6 @@ function SignIn() {
                     Nhập Password
                   </Form.Control.Feedback>
                 </Form.Group>
-
                 <Button
                   className={styles.btnSubmit}
                   type="submit"
@@ -148,15 +150,13 @@ function SignIn() {
                 >
                   Sign in
                 </Button>
-
                 <div className="link">
                   <Typography>
-                    <Link to="/forgot">Forgot password?</Link>
+                    <Link to="/forgot"> Forgot password ? </Link>
                   </Typography>
                   <Typography>
-                    {" "}
-                    Do you have an account?
-                    <Link to="/signup">Sign Up?</Link>
+                    Do you have an account ?
+                    <Link to="/signup"> Sign Up ? </Link>
                   </Typography>
                 </div>
               </Paper>
