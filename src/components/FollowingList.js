@@ -21,7 +21,7 @@ function FollowingList() {
 
   return (
     <div>
-      <h1>Người đang theo dõi</h1>
+      <h1 style={{ color: "#5b5656" }}>Người đang theo dõi</h1>
       {storeFollowingAccounts ? (
         storeFollowingAccounts.map((followingAccount) => {
           return (

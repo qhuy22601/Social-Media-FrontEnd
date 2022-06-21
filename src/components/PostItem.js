@@ -32,8 +32,8 @@ function PostItem(props) {
     localStorage.getItem("UserId")
   );
   const [showSuggestor, setShowSuggestor] = useState(false);
-  const [left, setLeft] = useState(null)
-  const [top, setTop] = useState(null)
+  const [left, setLeft] = useState(null);
+  const [top, setTop] = useState(null);
   const [postId, setPostId] = useState(props.postId);
 
   TimeAgo.addLocale(en);
@@ -62,10 +62,9 @@ function PostItem(props) {
     color: {
       backgroundColor: "#282828",
     },
-    name:{
-
-      textTransform: 'capitalize'
-    }
+    name: {
+      textTransform: "capitalize",
+    },
   };
 
   function handleShareClick(e) {
@@ -87,7 +86,7 @@ function PostItem(props) {
 
     setCommentContent(e.target.value);
 
-    if (commentContent.length -1 >= 0 && commentContent.length - 1 <= 100) {
+    if (commentContent.length - 1 >= 0 && commentContent.length - 1 <= 100) {
       setSendButtonDisable(false);
     } else {
       setSendButtonDisable(true);
@@ -98,16 +97,16 @@ function PostItem(props) {
     const hookType = metaInformation;
     const cursor = metaInformation;
 
-    if (hookType === 'start') {
-        setShowSuggestor(true);
-        setLeft(cursor.left);
-        setTop(cursor.top + cursor.height); // we need to add the cursor height so that the dropdown doesn't overlap with the `@`.
+    if (hookType === "start") {
+      setShowSuggestor(true);
+      setLeft(cursor.left);
+      setTop(cursor.top + cursor.height); // we need to add the cursor height so that the dropdown doesn't overlap with the `@`.
     }
-    if (hookType === 'cancel') {
+    if (hookType === "cancel") {
       setShowSuggestor(false);
       setLeft("");
       setTop(""); // we need to add the cursor height so that the dropdown doesn't overlap with the `@`.
-  }
+    }
   }
   function sendComment(e) {
     dispatch(
@@ -135,14 +134,12 @@ function PostItem(props) {
           </div>
 
           <div className="d-flex flex-column">
-
             <div className="fw-bold" style={styles.name}>
               {props.firstName + " " + props.lastName}
             </div>
             <div className="text-secondary">
               {timeAgo.format(new Date(props.postDate).getTime(), "twitter")}
             </div>
-
           </div>
           <div
             class="d-flex flex-row-reverse"
@@ -217,10 +214,9 @@ function PostItem(props) {
         {/* Comment List */}
         {commentStatus === true ? (
           <div className="mt-3">
-            <div className="d-flex align-items-center"  >
+            <div className="d-flex align-items-center">
               <Form className="w-100 mx-1">
                 <Form.Group>
-                  
                   <Form.Control
                     type="text"
                     placeholder="Viết bình luận..."
@@ -266,7 +262,6 @@ function PostItem(props) {
                     data=""
                     />
                   </MentionsInput> */}
-               
                 </Form.Group>
               </Form>
               <span className="mx-1">{commentContent.length}/100</span>

@@ -34,17 +34,17 @@ function NewsFeed() {
     container: {
       width: 600,
       color: "white",
+      height: "100vh",
     },
-    h:{
-      textTransform: 'capitalize'
+    h: {
+      textTransform: "capitalize",
     },
-    bn:{
-      color: '#0d6efd'
+    bn: {
+      color: "#0d6efd",
     },
-    name:{
-      color: 'black',
-      textTransform: 'capitalize'
-   
+    name: {
+      color: "black",
+      textTransform: "capitalize",
     },
     cancle: {
       marginRight: 70,
@@ -92,8 +92,7 @@ function NewsFeed() {
   });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const handleChange =({target})=>{
-
+  const handleChange = ({ target }) => {
     setSearch(target.value);
     if (!target.value) {
       setItems(initialList);
@@ -104,9 +103,9 @@ function NewsFeed() {
       name.common.toLowerCase().includes(lowerSeach)
     );
     setItems(filter);
-  }
+  };
 
-  async function load(){
+  async function load() {
     fetch("api/auth/users")
       .then((res) => res.json())
       .then(
@@ -135,101 +134,102 @@ function NewsFeed() {
   // document.body.style.backgroundColor = "#1c1e21";
   return (
     <div className="main">
-    <Container>
-      <div className="header">
-      {/* {items.length>0 &&( */}
-        <div className="header_left">
-          <div className="header_input" onClick={searchh}>
-            <Link to="search">
-            <SearchIcon />
-            </Link>
-            <input
-              placeholder="Search"
-              type="text"
-              size="25"
-              value={search}
-              onChange={handleChange}
-            />
-            <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
+      <Container>
+        <div className="header">
+          {/* {items.length>0 &&( */}
+          <div className="header_left">
+            <div className="header_input" onClick={searchh}>
+              <Link to="search">
+                <SearchIcon />
+              </Link>
+              <input
+                placeholder="Search"
+                type="text"
+                size="25"
+                value={search}
+                onChange={handleChange}
+              />
+              <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
+            </div>
           </div>
-          
-        </div>
-      {/* )} */}
+          {/* )} */}
 
-        <div className="header_center">
-          <div className="header_option header_option--active">
-            <Link to="">
-              {" "}
-              <HomeOutlinedIcon fontSize="large" />
-            </Link>
-          </div>
-          <div className="header_option">
-            <Link to="following">
-              {" "}
-              <SupervisedUserCircleOutlinedIcon fontSize="large" />
-            </Link>
-          </div>
-          <div className="header_option">
-            <Link to="follower">
-              <PeopleAltOutlinedIcon fontSize="large" />
-            </Link>
-          </div>
-          <div className="header_option" onClick={handleClick} color="primary">
-            <ExploreOutlinedIcon style={styles.bn} fontSize="large" />
-          </div>
-          <div className="header_option">
-            <Link to="game">
-              <WidgetsOutlinedIcon fontSize="large" />
-            </Link>
-          </div>
-        </div>
-
-        <div className="header_right">
-          <div className="header_info">
-            <Link to="myprofile">
-              {" "}
-              <img src={url} style={styles.circleImageLayout} />
-            </Link>
-
-            <h4 className="name" style={styles.name}>
-              {userName}{" "}
-            </h4>
+          <div className="header_center">
+            <div className="header_option header_option--active">
+              <Link to="">
+                {" "}
+                <HomeOutlinedIcon fontSize="large" />
+              </Link>
+            </div>
+            <div className="header_option">
+              <Link to="following">
+                {" "}
+                <SupervisedUserCircleOutlinedIcon fontSize="large" />
+              </Link>
+            </div>
+            <div className="header_option">
+              <Link to="follower">
+                <PeopleAltOutlinedIcon fontSize="large" />
+              </Link>
+            </div>
+            <div
+              className="header_option"
+              onClick={handleClick}
+              color="primary"
+            >
+              <ExploreOutlinedIcon style={styles.bn} fontSize="large" />
+            </div>
+            <div className="header_option">
+              <Link to="game">
+                <WidgetsOutlinedIcon fontSize="large" />
+              </Link>
+            </div>
           </div>
 
-          <div className="iconButton">
-            <IconButton>
-
-              <Link to="editform">
-                <AppsIcon />
+          <div className="header_right">
+            <div className="header_info">
+              <Link to="myprofile">
+                {" "}
+                <img src={url} style={styles.circleImageLayout} />
               </Link>
 
-            </IconButton>
-          </div>
-          <div className="iconButton">
-            <IconButton>
-              <Link to="chat">
-                <ForumIcon />
-              </Link>
-            </IconButton>
-          </div>
-          {/* <div className='iconButton'>
+              <h4 className="name" style={styles.name}>
+                {userName}{" "}
+              </h4>
+            </div>
+
+            <div className="iconButton">
+              <IconButton>
+                <Link to="editform">
+                  <AppsIcon />
+                </Link>
+              </IconButton>
+            </div>
+            <div className="iconButton">
+              <IconButton>
+                <Link to="chat">
+                  <ForumIcon />
+                </Link>
+              </IconButton>
+            </div>
+            {/* <div className='iconButton'>
               <IconButton>
                 <NotificationsActiveIcon />
               </IconButton>
             </div> */}
-          <div className="iconButton" onClick={handleSignOut}>
-            <IconButton>
-              <ExpandMoreIcon />
-            </IconButton>
+            <div className="iconButton" onClick={handleSignOut}>
+              <IconButton>
+                <ExpandMoreIcon />
+              </IconButton>
+            </div>
           </div>
         </div>
-      </div>
-      <Container className="pt-3" style={styles.container}>
-        <Col md={13}>
-          <Outlet />{" "}
-        </Col>
+        <Container className="pt-3" style={styles.container}>
+          <Col md={13}>
+            <Outlet />{" "}
+          </Col>
+        </Container>
       </Container>
-    </Container>
     </div>
   );
 }
