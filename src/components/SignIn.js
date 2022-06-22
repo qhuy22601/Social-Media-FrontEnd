@@ -48,6 +48,7 @@ function SignIn() {
       localStorage.setItem("UserAddress", response.data.payload.user.address);
       localStorage.setItem("UserPhoneNumber",response.data.payload.user.phoneNumber);
       localStorage.setItem("UserBirthDate",response.data.payload.user.birthDate);
+      localStorage.setItem("UserName",response.data.payload.user.username);
       localStorage.setItem("Token", response.data.payload.token);
       navigate("/newsfeed");
     }

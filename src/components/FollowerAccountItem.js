@@ -15,6 +15,8 @@ function FollowerAccountItem(props) {
     (state) => state.followingAccountReducer.followingAccounts
   );
 
+  const [fullName, setFullName] = useState(localStorage.getItem('UserName'));
+
   const [followButtonTitle, setFollowButtonTitle] = useState("Theo dõi");
   const [tickIconStatus, setTickIconStatus] = useState(false);
 
@@ -83,8 +85,8 @@ function FollowerAccountItem(props) {
           className="text-decoration-none text-dark"
           onClick={handleClick}
         >
-          <h5 className="name" style={styles.name}>
-            {props.firstName + " " + props.lastName}{" "}
+         <h5 className="name" style={styles.name}>
+            {props.lastName}{" "}
           </h5>
         </Link>
       </div>

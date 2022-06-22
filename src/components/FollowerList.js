@@ -30,7 +30,9 @@ function FollowerList() {
               id={followerAccount.id}
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
+              username = {followerAccount.username}
               ava={followerAccount.avata}
+              
             />
           );
         })

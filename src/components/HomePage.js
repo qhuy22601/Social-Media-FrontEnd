@@ -32,6 +32,10 @@ function HomePage() {
       <Link to="/signup">
         <Button variant="primary">Đăng kí</Button>
       </Link>
+      <Link to ="/chat">
+        <Button variant="primary">ChatCord</Button>
+      </Link>
+
     </Container>
   );
 }

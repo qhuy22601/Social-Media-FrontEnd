@@ -50,6 +50,8 @@ function NewsFeed() {
       marginRight: 70,
     },
   };
+  const[fullName,setFullName] = useState(localStorage.getItem('UserName'));
+
   const [initialList, setInitialList] = useState([]);
   const [items, setItems] = useState([]);
   const [userName, setUserName] = useState(
@@ -82,6 +84,10 @@ function NewsFeed() {
     localStorage.removeItem("UserLastName");
     localStorage.removeItem("UserEmail");
     localStorage.removeItem("UserAvata");
+    localStorage.removeItem("UserName");
+    localStorage.removeItem("UserAddress");
+    localStorage.removeItem("UserPhoneNumber");
+    localStorage.removeItem("UserBirthDate");
     navigate("/");
   }
 
@@ -150,7 +156,7 @@ function NewsFeed() {
               value={search}
               onChange={handleChange}
             />
-            <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
+            {/* <CancelOutlinedIcon style={styles.cancle} onClick={cancel} /> */}
           </div>
           
         </div>
@@ -192,7 +198,7 @@ function NewsFeed() {
             </Link>
 
             <h4 className="name" style={styles.name}>
-              {userName}{" "}
+              {fullName}{" "}
             </h4>
           </div>
 

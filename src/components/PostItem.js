@@ -23,6 +23,8 @@ import {
 
 function PostItem(props) {
   const dispatch = useDispatch();
+  
+  const [fullName,setFullName] = useState(localStorage.getItem('UserName'));
 
   const [likeStatus, setLikeStatus] = useState(false);
   const [commentStatus, setCommentStatus] = useState(false);
@@ -137,7 +139,7 @@ function PostItem(props) {
           <div className="d-flex flex-column">
 
             <div className="fw-bold" style={styles.name}>
-              {props.firstName + " " + props.lastName}
+              {fullName}
             </div>
             <div className="text-secondary">
               {timeAgo.format(new Date(props.postDate).getTime(), "twitter")}

@@ -26,6 +26,7 @@ function PostCompose() {
       " " +
       localStorage.getItem("UserLastName")
   );
+  const [ fullName,setFullName]= useState(localStorage.getItem("UserName"));
   const [userId, setUserId] = useState(localStorage.getItem("UserId"));
   const [postContent, setPostContent] = useState("");
   const [postContentCount, setPostContentCount] = useState(0);
@@ -200,7 +201,7 @@ function PostCompose() {
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
 
-                <div className="fs-4 fw-bold" style={styles.name}>{userFullname}</div>
+                <div className="fs-4 fw-bold" style={styles.name}>{fullName}</div>
 
               </div>
             </Form.Label>

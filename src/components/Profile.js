@@ -57,6 +57,7 @@ function Profile() {
               lastName={userInfo.lastName}
               content={postItem.content}
               ava={userInfo.avata}
+              username={userInfo.username}
               image={postItem.image}
               likeList={postItem.like}
               shareList={postItem.share}

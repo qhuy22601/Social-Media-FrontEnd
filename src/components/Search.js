@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles/App.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAllAccounts } from "../feature/followingAccounts/followingAccountSlice";
+import FollowerAccountItem from "./FollowerAccountItem";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 function Search() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -12,6 +16,12 @@ function Search() {
     localStorage.getItem("UserFirstName") +
       " " +
       localStorage.getItem("UserLastName")
+  );
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const storeFollowerAccounts = useSelector(
+    (state) => state.followingAccountReducer.followerAccounts
   );
   const handleSearch = ({ target }) => {
     setSearch(target.value);
@@ -25,6 +35,29 @@ function Search() {
     );
     setItems(filter);
   };
+  const getAllAccounts = createAsyncThunk(
+    "/api/auth/users",
+    async (thunkAPI) => {
+      const response = await axios({
+        method: "post",
+        url: "/api/auth/users",
+        headers: {
+          Authorization: localStorage.getItem("Token"),
+        },
+      }).then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          setInitialList(result);
+        },
+        (error) => {
+          setIsLoaded(false);
+          setError(error);
+        }
+      );
+    }
+  );
   async function load() {
     fetch("http://localhost:3001/user")
       .then((res) => res.json())
@@ -60,7 +93,7 @@ function Search() {
       {!isLoaded && <div>Loading...</div>}
       {items.length > 0 && (
         <div className="wrapper">
-          <div className={styles.search}>
+          <div className="inp">
             <input
               placeholder="Search..."
               className="search-t"
@@ -71,31 +104,21 @@ function Search() {
               
             />
           </div>
-          <ul className="card-grid">
-            {items.map((item) => (
-              <li className={styles.text} key={item.lastName}>
-                <article className="card">
-                  {/* <div className="card-image">
-                    <img src={item.flags.png} alt={item.name.common} />
-                  </div> */}
-                  <div className="card-content">
-                    <h2 className="text">{item.firstName} {item.lastName}</h2>
-                    <ol className="card-list">
-                      <li>
-                        population: <span className="text">{item.email}</span>
-                      </li>
-                      <li>
-                        Region: <span className="text">{item.firstName}</span>
-                      </li>
-                      <li className={styles.text}>
-                        Capital: <span className="text">{item.address}</span>
-                      </li>
-                    </ol>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
+          {storeFollowerAccounts ? (
+        storeFollowerAccounts.map((followerAccount) => {
+          return (
+            <FollowerAccountItem
+              key={followerAccount.id}
+              id={followerAccount.id}
+              firstName={followerAccount.firstName}
+              lastName={followerAccount.lastName}
+              ava={followerAccount.avata}
+            />
+          );
+        })
+      ) : (
+        <span></span>
+      )}
         </div>
       )}
     </>

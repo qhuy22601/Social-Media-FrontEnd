@@ -19,10 +19,12 @@ import Game from "./game/Game";
 import EditForm from "./EditForm";
 import Chat from "./Chat";
 import Search from "./Search"
+import ChatRoom from "./ChatRoom"
 function AppContainer() {
   return (
     <HashRouter>
       <Routes>
+
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
