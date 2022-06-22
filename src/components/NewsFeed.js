@@ -20,6 +20,7 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import InsertEmoticonOutlinedIcon from "@mui/icons-material/InsertEmoticonOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import "./styles/Header.css";
+import SearchInput from "../components/SearchInput";
 
 import styles from "./styles/NewsFeed.module.css";
 import { style } from "@mui/system";
@@ -137,7 +138,9 @@ function NewsFeed() {
       <Container>
         <div className="header">
           {/* {items.length>0 &&( */}
-          <div className="header_left">
+
+          <SearchInput />
+          {/* <div className="header_left">
             <div className="header_input" onClick={searchh}>
               <Link to="search">
                 <SearchIcon />
@@ -151,7 +154,7 @@ function NewsFeed() {
               />
               <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
             </div>
-          </div>
+          </div> */}
           {/* )} */}
 
           <div className="header_center">
