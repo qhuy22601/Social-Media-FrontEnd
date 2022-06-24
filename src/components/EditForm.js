@@ -164,6 +164,7 @@ function EditForm() {
     lastName: yup.string(),
     avata: yup.string(),
     address: yup.string(),
+    username: yup.string(),
     phoneNumber: yup.string(),
     birthDate: yup.string(),
   });
@@ -237,6 +238,7 @@ function EditForm() {
         lastName: inputData.lastName,
         avata: file64StringWithType,
         address: inputData.address,
+        username: inputData.username,
         phoneNumber: inputData.phoneNumber,
         birthDate: inputData.birthDate,
       },
@@ -254,6 +256,7 @@ function EditForm() {
       localStorage.removeItem("UserEmail");
       localStorage.removeItem("UserAvata");
       localStorage.removeItem("UserBirthDate");
+      localStorage.removeItem("UserName");
       localStorage.removeItem("UserPhoneNumber");
       localStorage.removeItem("UserAddress");
 
@@ -292,6 +295,7 @@ function EditForm() {
           firstName: "",
           lastName: "",
           address: "",
+          username:"",
           phoneNumber: "",
           birthDate: "",
         }}
@@ -357,6 +361,30 @@ function EditForm() {
                 Nhập Tên
               </Form.Control.Feedback>
             </Form.Group>
+            
+            <Form.Group
+              className={styles.formGroup}
+              as={Col}
+              md="12"
+              controlId="change username"
+            >
+              <Form.Label className={styles.formLabel}> username </Form.Label>
+              <Form.Control
+                className="text_field"
+                type="text"
+                name="username"
+                value={values.username}
+                onChange={handleChange}
+                isInvalid={touched.username && errors.username}
+                placeholder="Username"
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Nhập username
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            //////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////
             <Form.Group
               className={styles.formGroup}

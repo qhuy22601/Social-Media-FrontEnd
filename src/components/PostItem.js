@@ -3,6 +3,10 @@ import { IconButton } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileId } from "../feature/checkProfile/checkProfileSlice";
+import { unfollowAccount } from "../feature/followingAccounts/followingAccountSlice";
+
 import React, { useState } from "react";
 import { Button, Form, Row } from "react-bootstrap";
 import {
@@ -12,7 +16,7 @@ import {
   RiSendPlane2Fill,
   RiShareForwardFill,
 } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+
 import {
   addComment,
   addLike,
@@ -37,6 +41,9 @@ function PostItem(props) {
   const [left, setLeft] = useState(null)
   const [top, setTop] = useState(null)
   const [postId, setPostId] = useState(props.postId);
+  
+  
+
 
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
@@ -139,7 +146,7 @@ function PostItem(props) {
           <div className="d-flex flex-column">
 
             <div className="fw-bold" style={styles.name}>
-              {fullName}
+              {props.username}
             </div>
             <div className="text-secondary">
               {timeAgo.format(new Date(props.postDate).getTime(), "twitter")}
@@ -215,6 +222,16 @@ function PostItem(props) {
             </span>
           </div>
         </div>
+
+
+
+
+
+{/* *
+*
+*
+* */}
+
 
         {/* Comment List */}
         {commentStatus === true ? (

@@ -53,6 +53,7 @@ function NewsFeedContent() {
               shareList={post.post.share}
               commentList={post.post.comment}
               postDate={post.post.createdAt}
+              username ={post.user.username}
             />
           );
         })

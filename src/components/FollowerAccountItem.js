@@ -86,7 +86,7 @@ function FollowerAccountItem(props) {
           onClick={handleClick}
         >
          <h5 className="name" style={styles.name}>
-            {props.lastName}{" "}
+            {props.username}{" "}
           </h5>
         </Link>
       </div>

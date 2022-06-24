@@ -2,19 +2,17 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+ 
 import Button from "react-bootstrap/Button";
 
-import {
-  BsFillBookFill,
-  BsGithub,
-  BsFillShareFill,
-  BsFillPersonPlusFill,
-  BsFillCpuFill,
-} from "react-icons/bs";
+import "./styles/homepage.css"
+
+
 
 function HomePage() {
+
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +22,7 @@ function HomePage() {
   });
 
   return (
-    <Container>
+    <Container classname = "container">
       <Link to="/signin">
         {" "}
         <Button variant="primary">Đăng nhập</Button>
@@ -32,10 +30,8 @@ function HomePage() {
       <Link to="/signup">
         <Button variant="primary">Đăng kí</Button>
       </Link>
-      <Link to ="/chat">
-        <Button variant="primary">ChatCord</Button>
-      </Link>
-
+      <Button variant="primary" href="http://localhost:3007/">Messenger</Button>
+  
     </Container>
   );
 }
