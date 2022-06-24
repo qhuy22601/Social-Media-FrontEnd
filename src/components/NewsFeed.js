@@ -51,6 +51,8 @@ function NewsFeed() {
       marginRight: 70,
     },
   };
+
+  const [ name, setName] = useState(localStorage.getItem("UserName"));
   const [initialList, setInitialList] = useState([]);
   const [items, setItems] = useState([]);
   const [userName, setUserName] = useState(
@@ -196,8 +198,8 @@ function NewsFeed() {
                 <img src={url} style={styles.circleImageLayout} />
               </Link>
 
-              <h4 className="name" style={styles.name}>
-                {userName}{" "}
+              <h4 className="name" style={styles.name}> 
+                {name}{" "}
               </h4>
             </div>
 

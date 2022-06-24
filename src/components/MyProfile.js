@@ -26,6 +26,7 @@ function MyProfile() {
   const [lastName, setLastName] = useState(
     localStorage.getItem("UserLastName")
   );
+  const[full, setFull] = useState(localStorage.getItem('UserName'));
   const[fullname, setFullname] = useState(firstName+ " "+ lastName);
   const [url, setUrl] = useState("");
   const uploader = (file) => {
@@ -131,7 +132,7 @@ function MyProfile() {
           <div style={styles.im}>
           <img src={url} style={styles.circleImageLayout} />
           <h2 style={styles.h}>
-            {fullname}
+            {full}
           </h2>
           </div>
         <div style={styles.display} >
@@ -141,6 +142,7 @@ function MyProfile() {
     
             <div style={styles.hide}>
             {isHovering && <h5 style={styles.h1}>Email: {email}</h5>}
+            {isHovering && <h5 style={styles.h1}>Tên: {firstName} {lastName}</h5>}
             {isHovering && <h5 style={styles.h1}>Địa chỉ: {address}</h5>}
             {isHovering && <h5 style={styles.h1}>SĐT: {phoneNumber}</h5>}
             {isHovering && <h5 style={styles.h1}>Ngày Sinh: {birthDate}</h5>}
@@ -170,6 +172,7 @@ function MyProfile() {
               key={postItem.id}
               postId={postItem.id}
               userId={postItem.userId}
+              username = {full}
               firstName={firstName}
               lastName={lastName}
               content={postItem.content}

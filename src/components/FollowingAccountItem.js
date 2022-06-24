@@ -15,6 +15,8 @@ function FollowingAccountItem(props) {
     (state) => state.checkProfileReducer.profileId
   );
 
+  const [fullName, setFullName] = useState(localStorage.getItem('UserName'));
+
   const [followButtonTitle, setFollowButtonTitle] = useState("Hủy theo dõi");
   const [tickIconStatus, setTickIconStatus] = useState(false);
   const [url, setUrl] = useState("");
@@ -36,7 +38,8 @@ function FollowingAccountItem(props) {
     },
 
     name: {
-      textTransform: "capitalize",
+      color: "white",
+      textTransform: 'capitalize'
     },
     btnn: {
       color: "#7eb4e9",
@@ -71,7 +74,7 @@ function FollowingAccountItem(props) {
           onClick={handleClick}
         >
           <h5 className="name" style={styles.name}>
-            {props.firstName + " " + props.lastName}{" "}
+            {props.username}{" "}
           </h5>
         </Link>
       </div>

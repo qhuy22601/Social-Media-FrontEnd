@@ -47,8 +47,10 @@ async function insertComment(postId, commentContent) {
     data: {
       commentEntity: {
         userId: localStorage.getItem("UserId"),
-        userFullname: localStorage.getItem("UserFirstName") + " " + localStorage.getItem("UserLastName"),
+        userFullname: localStorage.getItem("UserLastName"),
         content: commentContent, 
+        avata : localStorage.getItem("UserAvata"),
+        username: localStorage.getItem("UserName"),
       },
       postId: {
         id: postId,

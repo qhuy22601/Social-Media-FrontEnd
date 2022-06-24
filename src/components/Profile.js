@@ -46,6 +46,7 @@ function Profile() {
 
   return (
     <div>
+      <h2>Bài đăng</h2>
       {postList !== null ? (
         postList.map((postItem) => {
           return (
@@ -57,6 +58,7 @@ function Profile() {
               lastName={userInfo.lastName}
               content={postItem.content}
               ava={userInfo.avata}
+              username={userInfo.username}
               image={postItem.image}
               likeList={postItem.like}
               shareList={postItem.share}

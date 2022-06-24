@@ -24,7 +24,7 @@ function HomePage() {
   });
 
   return (
-    <Container>
+    <Container classname = "container">
       <Link to="/signin">
         {" "}
         <Button variant="primary">Đăng nhập</Button>
@@ -32,6 +32,8 @@ function HomePage() {
       <Link to="/signup">
         <Button variant="primary">Đăng kí</Button>
       </Link>
+      <Button variant="primary" href="http://localhost:3007/">Messenger</Button>
+  
     </Container>
   );
 }
