@@ -4,6 +4,7 @@ import HeadlessTippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
 // import { searchService } from '~/services/searchService';
+import axios from "axios";
 
 import { useDebounce } from "../hooks";
 import styles from "./SearchInput.module.scss";
@@ -40,6 +41,14 @@ function SearchInput() {
     //     console.log(error);
     //   }
     // };
+
+    const request = axios.create({
+      headers: { Authenrization: localStorage.getItem("Token") },
+    });
+
+    request
+      .get(`/api/auth/users/search/${debounced}`)
+      .then((res) => console.log(res));
 
     // fetchApi();
   }, [debounced]);
