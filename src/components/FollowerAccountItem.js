@@ -15,6 +15,8 @@ function FollowerAccountItem(props) {
     (state) => state.followingAccountReducer.followingAccounts
   );
 
+  const [fullName, setFullName] = useState(localStorage.getItem('UserName'));
+
   const [followButtonTitle, setFollowButtonTitle] = useState("Theo dõi");
   const [tickIconStatus, setTickIconStatus] = useState(false);
 
@@ -50,8 +52,8 @@ function FollowerAccountItem(props) {
     },
 
     name: {
-      color: "#000",
-      textTransform: "capitalize",
+      color: "white",
+      textTransform: 'capitalize'
     },
     btnn: {
       color: "#7eb4e9",
@@ -83,8 +85,8 @@ function FollowerAccountItem(props) {
           className="text-decoration-none text-dark"
           onClick={handleClick}
         >
-          <h5 className="name" style={styles.name}>
-            {props.firstName + " " + props.lastName}{" "}
+         <h5 className="name" style={styles.name}>
+            {props.username}{" "}
           </h5>
         </Link>
       </div>

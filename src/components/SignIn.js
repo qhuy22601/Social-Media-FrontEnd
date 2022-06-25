@@ -45,6 +45,7 @@ function SignIn() {
       localStorage.setItem("UserLastName", response.data.payload.user.lastName);
       localStorage.setItem("UserEmail", response.data.payload.user.email);
       localStorage.setItem("UserAvata", response.data.payload.user.avata);
+      localStorage.setItem("UserName",response.data.payload.user.username);
       localStorage.setItem("UserAddress", response.data.payload.user.address);
       localStorage.setItem("UserPhoneNumber",response.data.payload.user.phoneNumber);
       localStorage.setItem("UserBirthDate",response.data.payload.user.birthDate);

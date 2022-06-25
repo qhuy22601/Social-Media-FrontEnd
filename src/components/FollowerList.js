@@ -21,7 +21,7 @@ function FollowerList() {
 
   return (
     <div>
-      <h1 style={{ color: "#5b5656" }}>Người theo dõi</h1>
+      <h1>Người theo dõi</h1>
       {storeFollowerAccounts ? (
         storeFollowerAccounts.map((followerAccount) => {
           return (
@@ -30,7 +30,9 @@ function FollowerList() {
               id={followerAccount.id}
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
+              username = {followerAccount.username}
               ava={followerAccount.avata}
+              
             />
           );
         })

@@ -25,6 +25,7 @@ function PostCompose() {
       " " +
       localStorage.getItem("UserLastName")
   );
+  const [ fullName,setFullName]= useState(localStorage.getItem("UserName"));
   const [userId, setUserId] = useState(localStorage.getItem("UserId"));
   const [postContent, setPostContent] = useState("");
   const [postContentCount, setPostContentCount] = useState(0);
@@ -54,10 +55,10 @@ function PostCompose() {
     compose: {
       backgroundColor: "#282828",
     },
-    name: {
-      color: "#fff",
-      textTransform: "capitalize",
-    },
+    name:{
+
+      textTransform: 'capitalize'
+    }
   };
 
   function showSuccessMessage(inputMessage) {
@@ -89,7 +90,7 @@ function PostCompose() {
   function handleContentChange(e) {
     setPostContent(e.target.value);
     setPostContentCount(e.target.value.length);
-    if (postContentCount - 1 === 0 || postContentCount > 200) {
+    if (postContentCount -1 === 0 || postContentCount > 200) {
       setDisablePostButton(true);
     } else {
       setDisablePostButton(false);
@@ -199,9 +200,8 @@ function PostCompose() {
                   <img src={url} style={styles.circleImageLayout}></img>
                 </div>
 
-                <div className="fs-4 fw-bold" style={styles.name}>
-                  {userFullname}
-                </div>
+                <div className="fs-4 fw-bold" style={styles.name}>{fullName}</div>
+
               </div>
             </Form.Label>
             <Form.Control
@@ -214,6 +214,7 @@ function PostCompose() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
+
             <Form.Label className="file">
               <Form.Control
                 className="inside"
@@ -222,6 +223,7 @@ function PostCompose() {
                 onChange={onUploadFileChange}
               />
               <CloudUploadOutlinedIcon />
+
             </Form.Label>
           </Form.Group>
           <div className="d-flex justify-content-end align-items-center">
@@ -237,9 +239,9 @@ function PostCompose() {
         </Form>
         {file64String !== null ? (
           <div>
-            <img src={file64StringWithType} alt="chosen" />
-            {/* <video src={file64StringWithType} alt="chosen"></video> */}
-            {/* <Player
+          <img src={file64StringWithType} alt="chosen" />
+          {/* <video src={file64StringWithType} alt="chosen"></video> */}
+          {/* <Player
           playsInline
           src={videoSrc}
           alt="chosen"

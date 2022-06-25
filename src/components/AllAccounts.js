@@ -28,7 +28,7 @@ function AllAccounts() {
 
   return (
     <div>
-      <h1 style={{ color: "#5b5656" }}>Khám phá</h1>
+      <h1>Khám phá</h1>
       {storeFollowerAccounts ? (
         storeFollowerAccounts.map((followerAccount) => {
           return (
@@ -38,6 +38,7 @@ function AllAccounts() {
               firstName={followerAccount.firstName}
               lastName={followerAccount.lastName}
               ava={followerAccount.avata}
+              username={followerAccount.username}
             />
           );
         })

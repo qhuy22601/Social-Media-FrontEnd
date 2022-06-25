@@ -29,6 +29,7 @@ function SignUp() {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required(),
+    username: yup.string().required(),
     firstName: yup.string().required(),
     lastName: yup.string().required(),
     avata: yup.string(),
@@ -41,6 +42,7 @@ function SignUp() {
       data: {
         firstName: inputData.firstName,
         lastName: inputData.lastName,
+        username: inputData.username,
         email: inputData.email,
         password: inputData.password,
         avata: file64StringWithType,
@@ -138,6 +140,7 @@ function SignUp() {
         initialValues={{
           email: "",
           password: "",
+          username: "",
           firstName: "",
           lastName: "",
         }}
@@ -202,6 +205,26 @@ function SignUp() {
                     />
                     <Form.Control.Feedback type="invalid">
                       Nhập Tên
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInUserName"
+                  >
+                    <Form.Label className={styles.formLabel}>UserName</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="username"
+                      value={values.username}
+                      onChange={handleChange}
+                      isInvalid={touched.username && errors.username}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập userName
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
