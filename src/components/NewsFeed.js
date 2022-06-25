@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import SearchIcon from "@mui/icons-material/Search";
+import AppsIcon from "@mui/icons-material/Apps";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import Cropper from "react-cropper"; //Import Cropper Component
+import ForumIcon from "@mui/icons-material/Forum";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined";
-import StorefrontIcon from "@mui/icons-material/Storefront";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUserCircleOutlined";
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
-import { Avatar, IconButton } from "@mui/material";
-import AppsIcon from "@mui/icons-material/Apps";
-import ForumIcon from "@mui/icons-material/Forum";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import "./styles/Header.css";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import InsertEmoticonOutlinedIcon from "@mui/icons-material/InsertEmoticonOutlined";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import "./styles/Header.css";
+import { IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Col, Container } from "react-bootstrap";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import SearchInput from "../components/SearchInput";
-
-import styles from "./styles/NewsFeed.module.css";
-import { style } from "@mui/system";
+import "./styles/Header.css";
 
 function NewsFeed() {
   const styles = {
@@ -52,7 +40,7 @@ function NewsFeed() {
     },
   };
 
-  const [ name, setName] = useState(localStorage.getItem("UserName"));
+  const [name, setName] = useState(localStorage.getItem("UserName"));
   const [initialList, setInitialList] = useState([]);
   const [items, setItems] = useState([]);
   const [userName, setUserName] = useState(
@@ -130,34 +118,11 @@ function NewsFeed() {
 
   function searchh() {}
 
-  // function login() {
-  //   this.socket.emit('login', localStorage.getItem("UserFirstName")+" " + localStorage.getItem("UserLastName"))
-  // }
-
-  // document.body.style.backgroundColor = "#1c1e21";
   return (
     <div className="main">
       <Container>
         <div className="header">
-          {/* {items.length>0 &&( */}
-
           <SearchInput />
-          {/* <div className="header_left">
-            <div className="header_input" onClick={searchh}>
-              <Link to="search">
-                <SearchIcon />
-              </Link>
-              <input
-                placeholder="Search"
-                type="text"
-                size="25"
-                value={search}
-                onChange={handleChange}
-              />
-              <CancelOutlinedIcon style={styles.cancle} onClick={cancel} />
-            </div>
-          </div> */}
-          {/* )} */}
 
           <div className="header_center">
             <div className="header_option header_option--active">
@@ -198,7 +163,7 @@ function NewsFeed() {
                 <img src={url} style={styles.circleImageLayout} />
               </Link>
 
-              <h4 className="name" style={styles.name}> 
+              <h4 className="name" style={styles.name}>
                 {name}{" "}
               </h4>
             </div>
@@ -217,11 +182,7 @@ function NewsFeed() {
                 </Link>
               </IconButton>
             </div>
-            {/* <div className='iconButton'>
-              <IconButton>
-                <NotificationsActiveIcon />
-              </IconButton>
-            </div> */}
+
             <div className="iconButton" onClick={handleSignOut}>
               <IconButton>
                 <ExpandMoreIcon />

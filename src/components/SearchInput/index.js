@@ -15,7 +15,7 @@ import { Wrapper as PopperWrapper } from "../Popper";
 const cx = classNames.bind(styles);
 
 function SearchInput() {
-  const [searchShow, setSearchShow] = useState([1, 2]);
+  const [searchShow, setSearchShow] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -42,13 +42,27 @@ function SearchInput() {
     //   }
     // };
 
-    const request = axios.create({
-      headers: { Authenrization: localStorage.getItem("Token") },
-    });
+    // const request = axios.create({
+    //   headers: { Authenrization: localStorage.getItem("Token") },
+    // });
 
-    request
-      .get(`/api/auth/users/search/${debounced}`)
-      .then((res) => console.log(res));
+    // request
+    //   .get(`/api/auth/users/search/${debounced}`)
+    //   .then((res) => console.log(res));
+
+    async function requestInfo() {
+      const response = await axios({
+        method: "get",
+        url: `/api/auth/users/search/${debounced}`,
+        headers: {
+          Authorization: localStorage.getItem("Token"),
+        },
+      });
+      setSearchShow(response.data);
+      return response;
+    }
+
+    requestInfo();
 
     // fetchApi();
   }, [debounced]);
@@ -69,21 +83,22 @@ function SearchInput() {
       setSearchText(searchValue);
     }
   };
+  console.log(searchShow);
 
   return (
     <div>
       <HeadlessTippy
         interactive
-        // visible={showResults && searchShow.length > 0}
-        visible
+        visible={showResults && searchShow.length > 0}
+        // visible={searchShow.length > 0}
         render={(attrs) => (
           <div className={cx("search-results")} tabIndex="-1" {...attrs}>
             <PopperWrapper>
               <h4 className={cx("search-accounts")}>Accounts</h4>
-              {/* {searchShow.map((item) => (
+              {searchShow.map((item) => (
                 <AccountItem key={item.id} data={item} />
-              ))} */}
-              <AccountItem />
+              ))}
+              {/* <AccountItem /> */}
             </PopperWrapper>
           </div>
         )}
