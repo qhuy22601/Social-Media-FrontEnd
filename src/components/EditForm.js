@@ -292,12 +292,12 @@ function EditForm() {
       <Formik
         validationSchema={schema}
         initialValues={{
-          firstName: "",
-          lastName: "",
-          address: "",
-          username:"",
-          phoneNumber: "",
-          birthDate: "",
+          firstName: localStorage.getItem("firstName"),
+          lastName: localStorage.getItem("lastName"),
+          address: localStorage.getItem("address"),
+          username:localStorage.getItem("username"),
+          phoneNumber: localStorage.getItem("phoneNumber"),
+          birthDate: localStorage.getItem("birthDate")
         }}
         onSubmit={(values, { setSubmitting }) => {
           changeName(values);

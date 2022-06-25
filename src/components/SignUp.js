@@ -33,6 +33,9 @@ function SignUp() {
     firstName: yup.string().required(),
     lastName: yup.string().required(),
     avata: yup.string(),
+    address: yup.string(),
+    phoneNumber: yup.string(),
+    birthDate: yup.string(),
   });
 
   async function postSignUpInfo(inputData) {
@@ -47,6 +50,9 @@ function SignUp() {
         password: inputData.password,
         avata: file64StringWithType,
         role: userRole,
+        phoneNumber: inputData.phoneNumber,
+        birthDate: inputData.birthDate,
+        address: inputData.address,
       },
     });
 
@@ -143,6 +149,9 @@ function SignUp() {
           username: "",
           firstName: "",
           lastName: "",
+          address: "",
+          phoneNumber: "",
+          birthDate: ""
         }}
         onSubmit={(values, { setSubmitting }) => {
           postSignUpInfo(values);
@@ -269,6 +278,67 @@ function SignUp() {
                     <Form.Control.Feedback type="invalid">
                       Nhập mk
                     </Form.Control.Feedback>
+
+                    <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signUpAdres"
+                  >
+                    <Form.Label className={styles.formLabel}>Thành Phố</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="address"
+                      value={values.address}
+                      onChange={handleChange}
+                      isInvalid={touched.address && errors.address}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập địa chỉ
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signUpPhoneNumber"
+                  >
+                    <Form.Label className={styles.formLabel}>SĐT</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="phoneNumber"
+                      value={values.phoneNumber}
+                      onChange={handleChange}
+                      isInvalid={touched.phoneNumber && errors.phoneNumber}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập SĐT
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className={styles.formGroup}
+                    as={Col}
+                    md="12"
+                    controlId="signInbirthday"
+                  >
+                    <Form.Label className={styles.formLabel}>Ngày sinh</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="birthDate"
+                      value={values.birthDate}
+                      onChange={handleChange}
+                      isInvalid={touched.birthDate && errors.birthDate}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Nhập Ngày Sinh
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
 
                     <Form.Group>
                       <Form.Label className={styles.formFile}>
