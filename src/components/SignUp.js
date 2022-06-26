@@ -278,7 +278,7 @@ function SignUp() {
                     <Form.Control.Feedback type="invalid">
                       Nhập mk
                     </Form.Control.Feedback>
-
+</Form.Group>
                     <Row>
                   <Form.Group
                     className={styles.formGroup}
@@ -353,7 +353,7 @@ function SignUp() {
                         <CloudUploadOutlinedIcon />
                       </Form.Label>
                     </Form.Group>
-                  </Form.Group>
+            
                 </Row>
                 <Button type="submit" variant="primary">
                   Đăng kí

@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getFollowingAccounts } from "../feature/followingAccounts/followingAccountSlice";
 import FollowingAccountItem from "./FollowingAccountItem";
+import classNames from "classnames/bind";
+import styles from "../components/SearchInput/SearchInput.module.scss";
+
+const cx = classNames.bind(styles);
+
 
 function FollowingList() {
   const navigate = useNavigate();
@@ -15,13 +20,16 @@ function FollowingList() {
     if (localStorage.getItem("Token") === null) {
       navigate("/unauthorized");
     }
+    const styles = {
+
+    }
 
     dispatch(getFollowingAccounts());
   }, []);
 
   return (
     <div>
-      <h1>Người đang theo dõi</h1>
+      <h1 className={cx('title')}>Người đang theo dõi</h1>
       {storeFollowingAccounts ? (
         storeFollowingAccounts.map((followingAccount) => {
           return (

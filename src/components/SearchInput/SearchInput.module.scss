@@ -7,22 +7,19 @@
     height: 42px;
     border-radius: 20px;
     border: 1px solid #0d6efd;
-
     input {
         flex: 1;
         height: 100%;
-        caret-color:#0d6efd;
+        caret-color: #0d6efd;
         border: transparent;
         font-size: 19px;
         outline: none;
         color: #5e5d5d;
         background-color: transparent;
     }
-
-    input:not(:placeholder-shown) ~ .search-btn {
+    input:not(:placeholder-shown)~.search-btn {
         color: rgba(22, 24, 35, 0.75);
     }
-
     &::after {
         content: '';
         position: absolute;
@@ -32,7 +29,6 @@
         height: calc(var(--search-height) - var(--search-top-spacer) * 2);
         background-color: rgba(22, 24, 35, 0.12);
     }
-
     &:focus-within {
         border-color: rgba(22, 24, 35, 0.2); // sửa lại focus thẻ input mới border ô search.
     }
@@ -40,7 +36,6 @@
 
 .search-results {
     width: 361px;
-
     .search-accounts {
         padding: 5px 12px;
         font-size: 14px;
@@ -90,8 +85,11 @@
         cursor: pointer;
         background-color: rgba(22, 24, 35, 0.03);
     }
-
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
     }
+}
+
+.title {
+    color: #000;
 }

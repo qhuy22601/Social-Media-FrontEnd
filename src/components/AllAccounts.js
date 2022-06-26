@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllAccounts } from "../feature/followingAccounts/followingAccountSlice";
 import FollowerAccountItem from "./FollowerAccountItem";
+import classNames from "classnames/bind";
+import styles from "../components/SearchInput/SearchInput.module.scss";
+
+const cx = classNames.bind(styles);
 
 function AllAccounts() {
   const navigate = useNavigate();
@@ -28,7 +32,7 @@ function AllAccounts() {
 
   return (
     <div>
-      <h1>Khám phá</h1>
+      <h1 className={cx('title')}>Khám phá</h1>
       {storeFollowerAccounts ? (
         storeFollowerAccounts.map((followerAccount) => {
           return (

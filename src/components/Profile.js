@@ -54,8 +54,6 @@ function Profile() {
               key={postItem.id}
               postId={postItem.id}
               userId={postItem.userId}
-              firstName={userInfo.firstName}
-              lastName={userInfo.lastName}
               content={postItem.content}
               ava={userInfo.avata}
               username={userInfo.username}

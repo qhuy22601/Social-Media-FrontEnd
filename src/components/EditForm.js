@@ -384,8 +384,6 @@ function EditForm() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            //////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////
             <Form.Group
               className={styles.formGroup}
               as={Col}
@@ -407,7 +405,7 @@ function EditForm() {
                 Nhập địa chỉ
               </Form.Control.Feedback>
             </Form.Group>
-            ////////////////////////////////////////////
+        
             <Form.Group
               className={styles.formGroup}
               as={Col}
@@ -429,7 +427,7 @@ function EditForm() {
                 Nhập sdt
               </Form.Control.Feedback>
             </Form.Group>
-            /////////////////////////////////////////////////
+          
             <Form.Group
               className={styles.formGroup}
               as={Col}
@@ -451,7 +449,7 @@ function EditForm() {
                 Nhập Ngày Sinh
               </Form.Control.Feedback>
             </Form.Group>
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
+          
             <Form.Group>
               <Form.Label className={styles.formFile}>
                 
